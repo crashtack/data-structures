@@ -79,16 +79,7 @@ class LinkedList(object):
         while current.get_next():
             fake_tuple += u"'{}', ".format(current.get_data())
             current = current.get_next()
-
         fake_tuple += u"'{}'".format(current.get_data())
-
         fake_tuple += u')'
         print(fake_tuple)
         return fake_tuple
-
-    # # from linked_list import LinkedList
-    # ll = LinkedList()
-    # ll.push('bob')
-    # ll.push('fred')
-    # print("search fred: {}".format(ll.search('fred')))
-    # # assert ll.search('fred') == 'fred'
