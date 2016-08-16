@@ -37,39 +37,26 @@ def test_search():
     ll.push('bob')
     ll.push('fred')
     print("search fred: {}".format(ll.search('fred')))
-    assert ll.search('fred') == 'fred'
+    assert ll.search('fred').data == 'fred'
 
 
 def test_search_none():
     from linked_list import LinkedList
     ll = LinkedList()
-    # assert ll.search('fred') == 'ValueError: that value is not in the list'
-    # assert ll.search('fred') == ValueError
-    with pytest.raises(ValueError):
-        ll.search('fred')
+    assert ll.search('fred') == None
 
 
 def test_display():
     from linked_list import LinkedList
     ll = LinkedList()
-    ll.push([1,2,3,4])
+    ll.push('bob')
     ll.push('fred')
-    assert ll.display() == "('bob', 'fred')"
+    assert ll.display() == "('fred', 'bob')"
 
 
-#
-#
-# def test_size():
-#     from linked_list import LinkedList
-#     print(ll)
+def test_display_one_node():
+    from linked_list import LinkedList
+    ll = LinkedList()
+    ll.push('fred')
+    assert ll.display() == "('fred')"
 
-# def test_search():
-#     from linked_list import search
-#
-#
-# def test_remove():
-#     from linked_list import remove
-#
-#
-# def test_display():
-#     from linked_list import display

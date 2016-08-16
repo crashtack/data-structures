@@ -52,7 +52,8 @@ class LinkedList(object):
             else:
                 current = current.get_next()
         if current is None:
-            raise ValueError("that value is not in the list")
+            # raise ValueError("that value is not in the list")
+            return None
         return current
 
     def remove(self, node):
@@ -73,17 +74,15 @@ class LinkedList(object):
             previous.set_next(current.get_next())
 
     def display(self):
-        coma_seperated = ""
         current = self.head
-        fake_tuple = '('
+        fake_tuple = u'('
         while current.get_next():
-            fake_tuple += ''.format(current.get_data())
+            fake_tuple += u"'{}', ".format(current.get_data())
             current = current.get_next()
-            # coma_seperated += "," + ''.format(current)
-            print('coma seperated: {}'.format(fake_tuple))
-        # fake_tuple = '(' + self.head + ,' + coma_seperated + ')'
-        # fake_tuple = '({}, {})'.format(self.head.get_data(), self.head.get_next())
-        fake_tuple += ')'
+
+        fake_tuple += u"'{}'".format(current.get_data())
+
+        fake_tuple += u')'
         print(fake_tuple)
         return fake_tuple
 
