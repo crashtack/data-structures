@@ -75,8 +75,21 @@ class LinkedList(object):
     def display(self):
         coma_seperated = ""
         current = self.head
-        while current.get_next(self):
-            current = current.get_next
-            coma_seperated = coma_seperated + "," + current
-        fake_tuple = '(' + self.head + ',' + coma_seperated + ')'
+        fake_tuple = '('
+        while current.get_next():
+            fake_tuple += ''.format(current.get_data())
+            current = current.get_next()
+            # coma_seperated += "," + ''.format(current)
+            print('coma seperated: {}'.format(fake_tuple))
+        # fake_tuple = '(' + self.head + ,' + coma_seperated + ')'
+        # fake_tuple = '({}, {})'.format(self.head.get_data(), self.head.get_next())
+        fake_tuple += ')'
+        print(fake_tuple)
         return fake_tuple
+
+    # # from linked_list import LinkedList
+    # ll = LinkedList()
+    # ll.push('bob')
+    # ll.push('fred')
+    # print("search fred: {}".format(ll.search('fred')))
+    # # assert ll.search('fred') == 'fred'

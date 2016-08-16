@@ -36,6 +36,7 @@ def test_search():
     ll = LinkedList()
     ll.push('bob')
     ll.push('fred')
+    print("search fred: {}".format(ll.search('fred')))
     assert ll.search('fred') == 'fred'
 
 
@@ -51,7 +52,7 @@ def test_search_none():
 def test_display():
     from linked_list import LinkedList
     ll = LinkedList()
-    ll.push('bob')
+    ll.push([1,2,3,4])
     ll.push('fred')
     assert ll.display() == "('bob', 'fred')"
 
