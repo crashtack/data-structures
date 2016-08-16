@@ -43,7 +43,9 @@ def test_search_none():
     from linked_list import LinkedList
     ll = LinkedList()
     # assert ll.search('fred') == 'ValueError: that value is not in the list'
-    assert ll.search('fred') == ValueError
+    # assert ll.search('fred') == ValueError
+    with pytest.raises(ValueError):
+        ll.search('fred')
 
 
 def test_display():
