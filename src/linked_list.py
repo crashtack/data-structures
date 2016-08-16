@@ -36,13 +36,47 @@ class LinkedList(object):
         return returned_value
 
     def size(self):
-        return len(self.lst)
+        current = self.head
+        count = 0
+        while current:
+            count += 1
+            current = current.get_next()
+        return count
 
-    def search(val):
-        pass
+    def search(self, val):
+        current = self.head
+        found = False
+        while current and found is False:
+            if current.get_data() == val:
+                found = True
+            else:
+                current = current.get_next()
+        if current is None:
+            raise ValueError("that value is not in the list")
+        return current
 
-    def remove(node):
-        pass
+    def remove(self, node):
+        current = self.head
+        previous = None
+        found = False
+        while current and found is False:
+            if current.get_date() == node:
+                found = True
+            else:
+                previous = current
+                current = current.get_next
+        if current is None:
+            raise ValueError("that value is not in the list")
+        if previous is None:
+            self.head = current.get_next()
+        else:
+            previous.set_next(current.get_next())
 
-    def display():
-        pass
+    def display(self):
+        coma_seperated = ""
+        current = self.head
+        while current.get_next(self):
+            current = current.get_next
+            coma_seperated = coma_seperated + "," + current
+        fake_tuple = '(' + self.head + ',' + coma_seperated + ')'
+        return fake_tuple
