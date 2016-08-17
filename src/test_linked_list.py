@@ -64,14 +64,19 @@ def test_display_one_node():
 def test_display_no_nodes():
     from linked_list import LinkedList
     ll = LinkedList()
-    # ll.push('fred')
     assert ll.display() is None
 
 
 def test_init_list():
     from linked_list import LinkedList
     ll = LinkedList(['bob', 'zeek'])
-    # ll.push('fred')
     print(u'll: {}'.format(ll.display()))
-    # assert ll.size() == 3
     assert ll.display() == "('zeek', 'bob')"
+
+
+def test_init_list2():
+    from linked_list import LinkedList
+    ll = LinkedList(['bob', 'zeek'])
+    ll.push('fred')
+    print(u'll: {}'.format(ll.display()))
+    assert ll.display() == "('fred', 'zeek', 'bob')"
