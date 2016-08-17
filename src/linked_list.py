@@ -66,7 +66,7 @@ class LinkedList(object):
         previous = None
         found = False
         while current and found is False:
-            if current.get_date() == node:
+            if current.get_data() == node:
                 found = True
             else:
                 previous = current
