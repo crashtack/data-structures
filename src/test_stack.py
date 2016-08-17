@@ -9,6 +9,7 @@ def test_push_pop():
     test_stack.push('bob')
     assert test_stack.pop() == 'bob'
 
+
 def test_push():
     from stack import Stack
     test_stack = Stack()
@@ -24,7 +25,8 @@ def test_init_list():
     assert test_stack.pop() == 'zeek'
     assert test_stack.pop() == 'bob'
 
-def test_push_pop():
+
+def test_push_pop_none():
     from stack import Stack
     test_stack = Stack()
     with pytest.raises(IndexError):
