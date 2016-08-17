@@ -21,7 +21,6 @@ class LinkedList(object):
 
     def __init__(self, head=None):
         self.head = None
-        # print(u'Optional Input param: {}'.format(head))
         if head is not None:
             for i in head:
                 self.push(i)
@@ -57,7 +56,6 @@ class LinkedList(object):
             else:
                 current = current.get_next()
         if current is None:
-            # raise ValueError("that value is not in the list")
             return None
         return current
 
