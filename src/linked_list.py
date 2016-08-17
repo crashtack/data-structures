@@ -20,14 +20,12 @@ class Node(object):
 class LinkedList(object):
 
     def __init__(self, head=None):
-        self.head = head
+        self.head = None
+        # print(u'Optional Input param: {}'.format(head))
         if head is not None:
-            self.head = head[0]
             for i in head:
                 self.push(i)
                 print(u'input: {}'.format(i))
-        # else:
-        #     self.head = head
 
     def push(self, val):
         new_node = Node(val)
@@ -82,7 +80,6 @@ class LinkedList(object):
 
     def display(self):
         current = self.head
-        print('display current: {}'.format(current.get_data()))
         if current is None:
             return None
         else:

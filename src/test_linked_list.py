@@ -71,6 +71,7 @@ def test_display_no_nodes():
 def test_init_list():
     from linked_list import LinkedList
     ll = LinkedList(['bob', 'zeek'])
-    ll.push('fred')
+    # ll.push('fred')
     print(u'll: {}'.format(ll.display()))
-    assert ll.size() == 3
+    # assert ll.size() == 3
+    assert ll.display() == "('zeek', 'bob')"
