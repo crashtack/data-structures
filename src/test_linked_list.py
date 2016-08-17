@@ -43,7 +43,7 @@ def test_search():
 def test_search_none():
     from linked_list import LinkedList
     ll = LinkedList()
-    assert ll.search('fred') == None
+    assert ll.search('fred') is None
 
 
 def test_display():
@@ -60,3 +60,17 @@ def test_display_one_node():
     ll.push('fred')
     assert ll.display() == "('fred')"
 
+
+def test_display_no_nodes():
+    from linked_list import LinkedList
+    ll = LinkedList()
+    # ll.push('fred')
+    assert ll.display() is None
+
+
+def test_init_list():
+    from linked_list import LinkedList
+    ll = LinkedList(['bob', 'zeek'])
+    ll.push('fred')
+    print(u'll: {}'.format(ll.display()))
+    assert ll.size() == 3

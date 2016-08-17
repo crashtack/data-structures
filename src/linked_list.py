@@ -21,6 +21,13 @@ class LinkedList(object):
 
     def __init__(self, head=None):
         self.head = head
+        if head is not None:
+            self.head = head[0]
+            for i in head:
+                self.push(i)
+                print(u'input: {}'.format(i))
+        # else:
+        #     self.head = head
 
     def push(self, val):
         new_node = Node(val)
@@ -75,11 +82,15 @@ class LinkedList(object):
 
     def display(self):
         current = self.head
-        fake_tuple = u'('
-        while current.get_next():
-            fake_tuple += u"'{}', ".format(current.get_data())
-            current = current.get_next()
-        fake_tuple += u"'{}'".format(current.get_data())
-        fake_tuple += u')'
-        print(fake_tuple)
-        return fake_tuple
+        print('display current: {}'.format(current.get_data()))
+        if current is None:
+            return None
+        else:
+            fake_tuple = u'('
+            while current.get_next():
+                fake_tuple += u"'{}', ".format(current.get_data())
+                current = current.get_next()
+            fake_tuple += u"'{}'".format(current.get_data())
+            fake_tuple += u')'
+            print(fake_tuple)
+            return fake_tuple
