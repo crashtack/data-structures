@@ -24,7 +24,7 @@ class LinkedList(object):
         if head is not None:
             for i in head:
                 self.push(i)
-                print(u'input: {}'.format(i))
+                # print(u'input: {}'.format(i))
 
     def push(self, val):
         new_node = Node(val)
