@@ -80,3 +80,5 @@ def test_init_list2():
     ll.push('fred')
     print(u'll: {}'.format(ll.display()))
     assert ll.display() == "('fred', 'zeek', 'bob')"
+
+# Remove test
