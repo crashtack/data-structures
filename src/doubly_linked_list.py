@@ -68,41 +68,30 @@ class DoubleLinkedList(object):
             pass
         return returned_value
 
+    def search(self, val):
+        """searches the list for the value that is passed"""
+        current = self.head
+        while current:
+            if current.data == val:
+                return current
+            else:
+                current = current.next_node
+        return current
+
     def remove(self, val):
         """removes the passed value if it is pressent in the list"""
-        # import pdb; pdb.set_trace()
-        current_node = self.head
-        previous = None
-        found = False
-        try:
-            while current_node.data is not val:
-                # this if looks for the correct node
-                current_node = current_node.next_node
+        if not self.head:
+            raise ValueError("No list")
+        found_node = self.search(val)
+        if found_node:
+            if found_node.pre_node:
+                found_node.pre_node.next_node = found_node.next_node
+            else:
+                self.head = self.head.next_node
+            if found_node.next_node:
+                found_node.next_node.pre_node = found_node.pre_node
+            else:
+                self.tail = self.tail.pre_node
+        else:
+            raise ValueError("Value not found")
 
-                if current_node.pre_node is not None:
-                    current_node = current_node.next_node
-                    current_node = current_node.pre_node
-                    return current_node.data
-                else:
-                    self.head = current_node.next_node
-                    current_node = None
-                if current_node is None:
-                    raise ValueError("that value is not in the list")
-
-
-        # current_node = current_node.next_node
-        #
-        #
-        #     previous = current
-        #             current = current.next_node
-        # if current is None:
-        #     raise ValueError("that value is not in the list")
-        # if previous is None:
-        #     # This is where the actual removing happens
-        #     if pre_node == None:
-        #         self.head = current.next_node
-        #     elif next_node == None:
-        #         self.tail.data = tail.pre_node
-        #         self.tail.next_node = None
-        # else:
-        #     previous.next_node = (current.next_node)

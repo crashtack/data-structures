@@ -103,10 +103,64 @@ def test_shift_3():
     assert dll.tail.data == 'fred'
 
 
-def test_remove_1():
+def test_remove_no_list():
     from doubly_linked_list import DoubleLinkedList
     dll = DoubleLinkedList()
-    dll.push('zeek')
-    dll.push('fred')
+    with pytest.raises(ValueError):
+        dll.remove('bob')
+
+
+def test_remove_1_removed():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList()
+    dll.push('bob')
+    dll.remove('bob')
+    assert dll.head is None
+
+
+def test_remove_1_not_found():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList()
+    dll.push('bob')
+    with pytest.raises(ValueError):
+        dll.remove('fred')
+
+
+def test_remove_multi_removed_head():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList(['zeek', 'bob', 'james', 'sam'])
+    dll.remove('sam')
+    assert dll.search('sam') is None
+
+
+def test_remove_multi_removed_tail():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList(['zeek', 'bob', 'james', 'sam'])
     dll.remove('zeek')
-    assert dll.shift() != 'fred'
+    assert dll.search('zeek') is None
+
+
+def test_remove_multi_removed_mid():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList(['seek', 'bob', 'james', 'sam'])
+    dll.remove('bob')
+    assert dll.search('bob') is None
+
+
+def test_remove_multi_not_found():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList(['seek', 'bob', 'james', 'sam'])
+    with pytest.raises(ValueError):
+        dll.remove('fred')
+
+
+def test_search_found():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList(['seek', 'bob', 'james', 'sam'])
+    assert dll.search('bob').data == 'bob'
+
+
+def test_search_not_found():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList(['seek', 'bob', 'james', 'sam'])
+    assert dll.search('nick') is None
