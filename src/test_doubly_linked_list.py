@@ -103,4 +103,10 @@ def test_shift_3():
     assert dll.tail.data == 'fred'
 
 
-
+def test_remove_1():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList()
+    dll.push('zeek')
+    dll.push('fred')
+    dll.remove('zeek')
+    assert dll.shift() != 'fred'
