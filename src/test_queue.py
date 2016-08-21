@@ -23,7 +23,6 @@ def test_init_int():
         u = Queue(7)
 
 
-
 def test_enqueue_empty(empty_queue):
     '''Test enquing if queue is emplty'''
     empty_queue.enqueue('bob')
