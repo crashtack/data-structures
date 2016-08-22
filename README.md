@@ -18,7 +18,7 @@ Implemented a Doubly Linked list in Python:
   * push(val) will insert the value ‘val’ at the head of the list append(val) will append the value ‘val’ at the tail of the list
   * pop() will pop the first value off the head of the list and return it.
   * shift() will remove the last value from the tail of the list and return it.
-  *remove(val) will remove the first instance of ‘val’ found in the list, starting from the head. If ‘val’ is not present, it will raise an appropriate Python exception.
+  * remove(val) will remove the first instance of ‘val’ found in the list, starting from the head. If ‘val’ is not present, it will raise an appropriate Python exception.
 
 Implement a queue in Python:
 
