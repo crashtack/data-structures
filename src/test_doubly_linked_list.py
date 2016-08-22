@@ -164,3 +164,9 @@ def test_search_not_found():
     from doubly_linked_list import DoubleLinkedList
     dll = DoubleLinkedList(['seek', 'bob', 'james', 'sam'])
     assert dll.search('nick') is None
+
+
+def test_search_empty():
+    from doubly_linked_list import DoubleLinkedList
+    dll = DoubleLinkedList()
+    assert dll.search('nick') is None
