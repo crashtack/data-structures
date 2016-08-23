@@ -50,3 +50,11 @@ def test_pop_heap(init_list, pop_return, heap):
     bh = Binheap(init_list)
     bh.pop()
     assert bh.heap == heap
+
+
+def test_pop_no_heap():
+    '''Test pop function if there is no heap'''
+    from binheap import Binheap
+    bh = Binheap()
+    with pytest.raises(IndexError):
+        bh.pop()

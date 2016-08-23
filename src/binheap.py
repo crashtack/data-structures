@@ -1,16 +1,6 @@
 # -*- coding utf-8 -*-
 
 
-# class Node(object):
-
-    # def __init__(self, data=None, parent=None, left=None, right=None):
-        # '''creating a node for a heap'''
-        # self.data = data
-        # self.parent = parent
-        # self.left = left
-        # self.right = right
-
-
 class Binheap(object):
 
     def __init__(self, iterable=None):
@@ -19,15 +9,6 @@ class Binheap(object):
             self.heap = None
         else:
             self.heap = sorted(iterable)
-
-
-    # def _swap(node1, node2):
-        # '''returns node1 and node2 swapped'''
-        # temp = node1
-        # node1 = node2
-        # node2 = temp
-        # return node1, node2
-        # pass
 
     def push(self, val):
         '''puts new value ito the heap, maintaining the heap property'''
@@ -52,8 +33,6 @@ class Binheap(object):
                 self.heap = head
                 self.heap.append(val)
                 self.heap += tail
-
-
 
     def pop(self):
         '''rmoves the "top" of the heap, and resorts the heap'''
