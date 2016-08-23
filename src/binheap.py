@@ -37,5 +37,5 @@ class Binheap(object):
     def pop(self):
         '''rmoves the "top" of the heap, and resorts the heap'''
         if self.heap is None:
-            raise IndexError
+            raise IndexError('tried to pop for nothing')
         return self.heap.pop(0)
