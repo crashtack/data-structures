@@ -19,7 +19,7 @@ class Binheap(object):
             self.heap = None
         else:
             self.heap = sorted(iterable)
-        
+
 
     # def _swap(node1, node2):
         # '''returns node1 and node2 swapped'''
@@ -36,19 +36,27 @@ class Binheap(object):
         elif self.heap is None:
             self.heap = [val]
         else:
+            print('heap: {}'.format(self.heap))
             head = []
             tail = []
-            for i, v in enumerate(self.heap):
-                if v > val:
-                    head = self.heap[0:i]
-                    print('i am head' + head)
-                    tail = self.heap[i:-1]
-                    print('i am tail' + tail)
-            self.heap = head
-            self.heap.append(val)
-            for i in tail:
-                self.heap.append(i)
+            if val > self.heap[-1]:
+                self.heap.append(val)
+            elif val < self.heap[0]:
+                self.heap = [val] + self.heap
+            else:
+                for i, v in enumerate(self.heap):
+                    if self.heap[i] > val:
+                        head = self.heap[0:i]
+                        tail = self.heap[i:]
+                        break
+                self.heap = head
+                self.heap.append(val)
+                self.heap += tail
+
+
 
     def pop(self):
         '''rmoves the "top" of the heap, and resorts the heap'''
-        return self.heap.pop()
+        if self.heap is None:
+            raise IndexError
+        return self.heap.pop(0)
