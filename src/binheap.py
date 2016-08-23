@@ -15,17 +15,12 @@ class Binheap(object):
 
     def __init__(self, iterable=None):
         '''Initialise a heap from an iterable or an empty heap'''
-        self.top = None
-        self.open = None
-        self.last = None
-
+        self.heap = []
         if iterable is not None:
-            empty_list = []
             for i in iterable:
-                empty_list.append(i)
-            sorted_list = empty_list.sort()
-            for i in sorted_list:
-                self.push(i)
+                self.heap.append(i)
+            self.heap = self.heap.sort()
+
 
     def _swap(node1, node2):
         '''returns node1 and node2 swapped'''
@@ -36,5 +31,20 @@ class Binheap(object):
         pass
 
 
-    def push():
-        '''puts new node on the heap'''
+    def push(self, val):
+        '''puts new value ito the heap, maintaining the heap property'''
+        if self.heap == []:
+            self.heap[0] = val
+        for i in self.heap:
+            if self.heap[i] > val:
+                head = self.heap[0:i]
+                tail = self.heap[i+1:]
+        self.heap = head
+        self.heap.append(val)
+        for i in tail:
+            self.heap.append(i)
+
+
+    def pop(self):
+        '''rmoves the "top" of the heap, and resorts the heap'''
+        return self.heap.pop()
