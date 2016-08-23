@@ -7,12 +7,12 @@ Implement a singly-linked list in Python:
   * search(val) will return the node containing ‘val’ in the list, if present, else None
   * remove(node) will remove the given node from the list, wherever it might be (node must be an item in the list)
   * display() will return a unicode string representing the list as if it were a Python tuple literal: “(12, ‘sam’, 37, ‘tango’)”
-  
+
 Implement a stack in in Python:
 
   * push(value) - Adds a value to the stack. The parameter is the value to be added to the stack.
   * pop() - Removes a value from the stack and returns that value. If the stack is empty, attempts to call pop should raise an appropriate Python exception class.
-  
+
 Implemented a Doubly Linked list in Python:
 
   * push(val) will insert the value ‘val’ at the head of the list append(val) will append the value ‘val’ at the tail of the list
@@ -36,8 +36,11 @@ Implement a deque in Python:
   * peek(): returns the next value that would be returned by pop but leaves the value in the deque (returns None if the deque is empty)
   * peekleft(): returns the next value that would be returned by popleft but leaves the value in the deque (returns None if the deque is empty)
 
+Implement a binary heap in Python:
+
+ * push(): puts a new value into the heap, maintaining the heap property.
+ * pop(): removes the “top” value in the heap, maintaining the heap property.
 
 Dependencies PIP
 
 Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
-
