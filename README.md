@@ -41,7 +41,7 @@ Implement a binary heap in Python:
  * push(): puts a new value into the heap, maintaining the heap property.
  * pop(): removes the “top” value in the heap, maintaining the heap property.
 
- Implement a priority queue in Python:
+Implement a priority queue in Python:
 
  * insert() inserts an item into the queue.
  * pop() removes the most important item from the queue.
