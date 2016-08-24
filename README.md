@@ -36,10 +36,6 @@ Implement a deque in Python:
   * peek(): returns the next value that would be returned by pop but leaves the value in the deque (returns None if the deque is empty)
   * peekleft(): returns the next value that would be returned by popleft but leaves the value in the deque (returns None if the deque is empty)
 
-Implement a binary heap in Python:
-
- * push(): puts a new value into the heap, maintaining the heap property.
- * pop(): removes the “top” value in the heap, maintaining the heap property.
 
 Dependencies PIP
 

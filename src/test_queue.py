@@ -16,6 +16,13 @@ def q_with_vals():
     return q_with_vals
 
 
+def test_init_int():
+    '''Tests initializing the queue with an non-iterable'''
+    from queue_ import Queue
+    with pytest.raises(TypeError):
+        u = Queue(7)
+
+
 def test_enqueue_empty(empty_queue):
     '''Test enquing if queue is emplty'''
     empty_queue.enqueue('bob')
@@ -42,3 +49,13 @@ def test_dequeue(q_with_vals):
 def test_peek(q_with_vals):
     '''test deque if que has values'''
     assert q_with_vals.peek() == 'sam'
+
+
+def test_size(empty_queue):
+    """test the size() method with 0 values"""
+    assert empty_queue.size() == 0
+
+
+def test_size(q_with_vals):
+    """test the size() method with 3 values"""
+    assert q_with_vals.size() == 3

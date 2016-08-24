@@ -91,4 +91,9 @@ class DoubleLinkedList(object):
             else:
                 self.tail = self.tail.pre_node
         else:
+<<<<<<< HEAD
+            raise ValueError("Value not found")
+        return self   # This allows us to chain after calling dll.remove()
+=======
             raise ValueError('Value not found')
+>>>>>>> linked_list
