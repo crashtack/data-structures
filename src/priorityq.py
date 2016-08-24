@@ -5,8 +5,7 @@ class Priorityq(object):
 
     def __init__(self, iterable=None):
         '''Initialise a Priorityq from a list of lists or tuples
-            where the zeroeth element is the priority
-        '''
+            where the zeroeth element is the priority'''
         if iterable is None:
             self.priorityq = None
         else:
@@ -36,4 +35,7 @@ class Priorityq(object):
     def peek(self):
         '''returns the most important item without removing it
         from the queue.'''
-        pass
+        if self.priorityq is None:
+            raise IndexError('tried to peek from an empty queue')
+        else:
+            return self.priorityq[0]

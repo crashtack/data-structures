@@ -102,3 +102,27 @@ def test_pop_no_heap():
     pq = Priorityq()
     with pytest.raises(IndexError):
         pq.pop()
+
+
+@pytest.mark.parametrize('input_d, result, result2', TABLE)
+def test_peek(input_d, result, result2):
+    '''tests the peek method'''
+    from priorityq import Priorityq
+    pq = Priorityq(input_d)
+    assert pq.peek() == result[0]
+
+def test_peek_none():
+    from priorityq import Priorityq
+    pq = Priorityq()
+    with pytest.raises(IndexError):
+        pq.peek()
+
+
+
+
+
+
+
+
+
+
