@@ -11,6 +11,9 @@ class Node(object):
 
 class Queue(object):
     def __init__(self, iterable=None):
+        """builds an empty queue, or a queue based on an iterable
+            throw a value error is iterable is not iterable.
+        """
         self.front = None
         self.back = None
         if iterable is not None:
@@ -18,6 +21,7 @@ class Queue(object):
                 self.enqueue(i)
 
     def enqueue(self, val):
+        """adds value to the queue"""
         new_node = Node(val)
         if self.front is None:
             self.front = new_node
@@ -29,6 +33,7 @@ class Queue(object):
             self.back = new_node
 
     def dequeue(self):
+        """returns the fron element and remove it"""
         try:
             returned_value = self.front.data
         except AttributeError:
@@ -41,11 +46,20 @@ class Queue(object):
         return returned_value
 
     def peek(self):
+        """returns the front element without removing it"""
         if self.front is None:
             return None
         else:
             return self.front.data
 
     def size(self):
+        """returns the number of elements in a queue"""
         if self.front is None:
             return 0
+        else:
+            count = 0
+            current = self.front
+            while current:
+                current = current.pre_node
+                count += 1
+            return count
