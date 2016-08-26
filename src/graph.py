@@ -10,7 +10,6 @@ class Graph(object):
          2:[]},
          3:[1]}
         '''
-
         if initial_graph is None:
             self.graph = {}
         else:
@@ -45,11 +44,38 @@ class Graph(object):
             self.graph[n1] = [n2]
 
     def del_node(self, n):
-        print(n in self.graph.keys())
-        print(self.graph.keys())
-
         if n in self.graph.keys():
             self.graph.pop(n)
+        else:
+            raise ValueError('That node does not exist')
+
+    def del_edge(self, n1, n2):
+        '''deletes the edge connecting ‘n1’ and ‘n2’ from the graph, 
+        raises an error if no such edge exists'''
+        if (n1 in self.graph) and (n2 in self.graph):
+            self.graph[n1].remove(n2)
+        else:
+            raise ValueError('That node does not exist')
+
+    def has_node(self, n):
+        '''True if node ‘n’ is contained in the graph, False if not.'''
+        return n in self.graph
+
+    def neighbors(self, n):
+        '''returns the list of all nodes connected to ‘n’ by edges, raises an error if n is not in graph'''
+        if n in self.graph:
+            return self.graph.get(n)
+        else:
+            raise ValueError('That node does not exist')
+
+    def adjacent(self, n1, n2):
+        '''returns True if there is an edge connecting n1 and n2, False if not,
+    raises an error if either of the supplied nodes are not in graph'''
+        if (n1 in self.graph) and (n2 in self.graph):
+            if n2 in self.graph[n1]:
+                return True
+            else:
+                return False
         else:
             raise ValueError('That node does not exist')
 
