@@ -24,7 +24,7 @@ def test_graph_constructor(initial_graph):
 
 
 def test_graph_constructor_none():
-    '''Test graph constructor if nothing is passed in''' 
+    '''Test graph constructor if nothing is passed in'''
     from graph import Graph
     g = Graph()
     assert g.graph == {}
@@ -205,5 +205,3 @@ def test_graph_adjacent_error(initial_graph):
     g = Graph(initial_graph)
     with pytest.raises(ValueError):
         g.adjacent(6, 5)
-
-
