@@ -50,7 +50,7 @@ class Graph(object):
             raise ValueError('That node does not exist')
 
     def del_edge(self, n1, n2):
-        '''deletes the edge connecting ‘n1’ and ‘n2’ from the graph, 
+        '''deletes the edge connecting ‘n1’ and ‘n2’ from the graph,
         raises an error if no such edge exists'''
         if (n1 in self.graph) and (n2 in self.graph):
             self.graph[n1].remove(n2)
@@ -79,18 +79,9 @@ class Graph(object):
         else:
             raise ValueError('That node does not exist')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def depth_first_traversal(self, start_node, dft=None):
+        '''perform a depth first traversal, returns a list of
+           nodes in the graph
+        '''
+        if dft is not None:
+            
