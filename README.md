@@ -41,6 +41,19 @@ Implement a binary heap in Python:
  * push(): puts a new value into the heap, maintaining the heap property.
  * pop(): removes the “top” value in the heap, maintaining the heap property.
 
-Dependencies PIP
+ Implement a graph in Python:
+
+* nodes(): return a list of all nodes in the graph
+* edges(): return a list of all edges in the graph
+* add_node(n): adds a new node ‘n’ to the graph
+* add_edge(n1, n2): adds a new edge to the graph connecting ‘n1’ and ‘n2’, if either n1 or n2 are not already present in the graph, they should be added.
+* del_node(n): deletes the node ‘n’ from the graph, raises an error if no such node exists
+* del_edge(n1, n2): deletes the edge connecting ‘n1’ and ‘n2’ from the graph, raises an error if no such edge exists
+* has_node(n): True if node ‘n’ is contained in the graph, False if not.
+* neighbors(n): returns the list of all nodes connected to ‘n’ by edges, raises an error if n is not in g
+* adjacent(n1, n2): returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
+
+Dependencies 
+# PIP
 
 Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
