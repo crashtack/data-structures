@@ -32,9 +32,10 @@ def g():
 
 def test_graph_constructor(g):
     '''Test graph constructor if graph is passed in'''
-    assert g.graph == GRAPH
+    assert g.graph == GRAPH2
 
 
 def test_dft(g):
     '''Test depth first traversal'''
+    print('\n\ng: {}'.format(g.nodes()))
     assert g.depth_first_traversal(1) == [1, 2, 4, 5, 3]
