@@ -35,8 +35,8 @@ class Graph(object):
             self.graph[n] = []
 
     def add_edge(self, n1, n2):
-        '''adds a new edge to the graph connecting ‘n1’ and ‘n2’, if either n1 or n2 are not already
-         present in the graph, they are added.'''
+        '''adds a new edge to the graph connecting n1 and n2, if either
+           n1 or n2 are not already present in the graph, they are added.'''
         if n2 not in self.graph:
             self.graph[n2] = []
         if n1 in self.graph:
@@ -51,7 +51,7 @@ class Graph(object):
             raise ValueError('That node does not exist')
 
     def del_edge(self, n1, n2):
-        '''deletes the edge connecting ‘n1’ and ‘n2’ from the graph,
+        '''deletes the edge connecting n1 and n2 from the graph,
         raises an error if no such edge exists'''
         if (n1 in self.graph) and (n2 in self.graph):
             self.graph[n1].remove(n2)
@@ -59,11 +59,11 @@ class Graph(object):
             raise ValueError('That node does not exist')
 
     def has_node(self, n):
-        '''True if node ‘n’ is contained in the graph, False if not.'''
+        '''True if node n is contained in the graph, False if not.'''
         return n in self.graph
 
     def neighbors(self, n):
-        '''returns the list of all nodes connected to ‘n’ by edges, raises an error if n is not in graph'''
+        '''returns the list of all nodes connected to n by edges, raises an error if n is not in graph'''
         if n in self.graph:
             return self.graph.get(n)
         else:
