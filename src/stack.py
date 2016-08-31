@@ -14,3 +14,7 @@ class Stack(object):
     def push(self, val):
         """pushes a value onto the top of the stack"""
         return self._linked_list.push(val)
+
+    def size(self):
+        '''returns the size of the Stack'''
+        return self._linked_list.size()

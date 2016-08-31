@@ -1,5 +1,5 @@
 # -*- coding utf-8 -*-
-
+from stack import Stack
 
 class Graph(object):
 
@@ -79,11 +79,28 @@ class Graph(object):
         else:
             raise ValueError('That node does not exist')
 
-    def depth_first_traversal(self, start_node, dft=None, graph=None):
+    def _traverse(self, start, add, remove, size):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        result = []
+        s = Stack()
+        s.add(start)
+        while s.size():
+            curser = s.remove()
+            if curser not in result:
+                result.append(curser)
+                for neighbor in curser:
+                    s.add(neighbor)
+        return result
+
+
+
+    def depth_first_traversal(self, start_node):
         '''perform a depth first traversal, returns a list of
            nodes in the graph
         '''
 
+        return _traverse(start_node, Stack.push(), Stack.pop(), Stack.size())
 
 
 
