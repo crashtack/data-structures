@@ -83,34 +83,7 @@ class Graph(object):
         '''perform a depth first traversal, returns a list of
            nodes in the graph
         '''
-        dft = [start_node]
-        curser = start_node
-        g = self.graph
-        print('\ndft: {}\n'.format(dft))
-        # while g[curser] != []:
-        not_done = True
-        while not_done:
-            print('curser: {}'.format(curser))
-            print('edges start: {}'.format(g[curser]))
-            # dft.append(g[curser][0])
-            print('edges end: {}'.format(g[curser]))
-            print('dft0: {}'.format(dft))
 
-            if g[curser] == []:
-
-                print('edges left: {}'.format(g[curser]))
-                print('dft1: {}'.format(dft))
-                del(g[curser])
-                curser = start_node
-            else:
-                print('curser2: {}'.format(curser))
-                print('edges left: {}'.format(g[curser]))
-                dft.append(g[curser][0])
-                curser = g[curser][0]
-                
-
-                print('dft2: {}'.format(dft))
-                # break
 
 
 
