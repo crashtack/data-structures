@@ -74,6 +74,7 @@ return result
 ```
 
 ###program output
+```
 Run Depth First and Breadth First Traversal
 100,000 times each on the following graph
 
@@ -85,7 +86,7 @@ Run Depth First and Breadth First Traversal
 
 Depth First Traversal  : [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:01.647541
 Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
-
+```
 
 
 Dependencies
