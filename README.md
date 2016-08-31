@@ -57,7 +57,7 @@ Implement a binary heap in Python:
 * g.depth_first_traversal(start): Perform a full depth-first traversal of the graph beginning at start. Return the full visited path when traversal is complete.
 * g.breadth_first_traversal(start): Perform a full breadth-first traversal of the graph, beginning at start. Return the full visited path when traversal is complete.
 
-###Appreciation: The current implementation is the 4th attempt and after the code review on Wednesday. I wrote the following pysudo code during class:
+#####Appreciation: The current implementation is the 4th attempt and after the code review on Wednesday. I wrote the following pysudo code during class:
 
 ```
 Some psudo Code for traverse funcion:
