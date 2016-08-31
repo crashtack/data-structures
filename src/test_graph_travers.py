@@ -22,10 +22,10 @@ TABLE = [(
 def g():
     from graph import Graph
     GRAPH2 = {1: [2, 3],
-             2: [4, 5],
-             3: [],
-             4: [],
-             5: []}
+              2: [4, 5],
+              3: [],
+              4: [],
+              5: []}
     g = Graph(GRAPH2)
     return g
 
