@@ -2,6 +2,7 @@
 from stack import Stack
 from queue_ import Queue
 
+
 class Graph(object):
 
     def __init__(self, initial_graph=None):
@@ -63,7 +64,8 @@ class Graph(object):
         return n in self.graph
 
     def neighbors(self, n):
-        '''returns the list of all nodes connected to n by edges, raises an error if n is not in graph'''
+        '''returns the list of all nodes connected to n by edges,
+         raises an error if n is not in graph'''
         if n in self.graph:
             return self.graph.get(n)
         else:
@@ -106,3 +108,30 @@ class Graph(object):
         '''
         q = Queue()
         return self._traverse(start_node, q.enqueue, q.dequeue, q.size)
+
+
+if __name__ == '__main__':
+    from datetime import datetime
+    g = Graph({1: [2, 3], 2: [4, 5], 3: [6, 7], 4: [], 5: [], 6: [], 7: []})
+
+    print('\n\nRun Depth First and Breadth First Traversal\n'
+          '100,000 times each on the following graph')
+    message = '''
+        0
+      /   \\
+     2      3
+    / \\    / \\
+   4   5  6   7
+   '''
+    print(message)
+    now = datetime.now()
+    for i in range(100000):
+        result = g.depth_first_traversal(1)
+    runtime = datetime.now() - now
+    print('Depth First Traversal  : {} Run time: {}'.format(result, runtime))
+
+    for i in range(100000):
+        result = g.depth_first_traversal(1)
+    runtime = datetime.now() - now
+
+    print('Breadth First Traversal: {} Run time: {}'.format(result, runtime))
