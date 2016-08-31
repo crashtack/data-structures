@@ -1,5 +1,6 @@
 # -*- coding utf-8 -*-
 from stack import Stack
+from queue_ import Queue
 
 class Graph(object):
 
@@ -83,30 +84,25 @@ class Graph(object):
         '''Traverse function
             takes in other functions and a start_node'''
         result = []
-        s = Stack()
-        s.add(start)
-        while s.size():
-            curser = s.remove()
+        add(start)
+        while size():
+            curser = remove()
             if curser not in result:
                 result.append(curser)
-                for neighbor in curser:
-                    s.add(neighbor)
+                for neighbor in self.graph[curser]:
+                    add(neighbor)
         return result
-
-
 
     def depth_first_traversal(self, start_node):
         '''perform a depth first traversal, returns a list of
            nodes in the graph
         '''
+        s = Stack()
+        return self._traverse(start_node, s.push, s.pop, s.size)
 
-        return _traverse(start_node, Stack.push(), Stack.pop(), Stack.size())
-
-
-
-
-
-
-
-
-# a comment at the bottom of the page
+    def breadth_first_traversal(self, start_node):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        q = Queue()
+        return self._traverse(start_node, q.enqueue, q.dequeue, q.size)

@@ -38,4 +38,10 @@ def test_graph_constructor(g):
 def test_dft(g):
     '''Test depth first traversal'''
     print('\n\ng: {}'.format(g.nodes()))
-    assert g.depth_first_traversal(1) == [1, 2, 4, 5, 3]
+    assert g.depth_first_traversal(1) == [1, 3, 2, 5, 4]
+
+
+def test_bft(g):
+    '''Test breadth first traversal'''
+    print('\n\ng: {}'.format(g.nodes()))
+    assert g.breadth_first_traversal(1) == [1, 2, 3, 4, 5]
