@@ -95,10 +95,33 @@ class Graph(object):
         #     del(graph[start_node])
         #     print('\ndft: {}'.format(dft))
         #     graph.depth_first_traversal(start_node, dft, graph)
-        dft = []
+        dft = [start_node]
         curser = start_node
         g = self.graph
-        print('\n\nstart_Node: {}\n'.format(g[curser]))
+        print('\ndft: {}\n'.format(dft))
+        # while g[curser] != []:
+        not_done = True
+        while not_done:
+            print('curser: {}'.format(curser))
+            print('edges start: {}'.format(g[curser]))
+            # dft.append(g[curser][0])
+            print('edges end: {}'.format(g[curser]))
+            print('dft0: {}'.format(dft))
+
+            if g[curser] == []:
+
+                print('edges left: {}'.format(g[curser]))
+                print('dft1: {}'.format(dft))
+                del(g[curser])
+                curser = start_node
+            else:
+                dft.append(g[curser][0])
+                curser = g[curser][0]
+                print('edges left: {}'.format(g[curser]))
+                print('dft2: {}'.format(dft))
+                # break
+
+
 
 
 
