@@ -47,6 +47,55 @@ Implement a priority queue in Python:
  * pop() removes the most important item from the queue.
  * peek(): returns the most important item without removing it from the queue.
 
-Dependencies PIP
+ Implement a graph in Python:
+
+* nodes(): return a list of all nodes in the graph
+* edges(): return a list of all edges in the graph
+* add_node(n): adds a new node ‘n’ to the graph
+* add_edge(n1, n2): adds a new edge to the graph connecting ‘n1’ and ‘n2’, if either n1 or n2 are not already present in the graph, they should be added.
+* del_node(n): deletes the node ‘n’ from the graph, raises an error if no such node exists
+* del_edge(n1, n2): deletes the edge connecting ‘n1’ and ‘n2’ from the graph, raises an error if no such edge exists
+* has_node(n): True if node ‘n’ is contained in the graph, False if not.
+* neighbors(n): returns the list of all nodes connected to ‘n’ by edges, raises an error if n is not in g
+* adjacent(n1, n2): returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
+
+##Implement a Graph Travers:
+* g.depth_first_traversal(start): Perform a full depth-first traversal of the graph beginning at start. Return the full visited path when traversal is complete.
+* g.breadth_first_traversal(start): Perform a full breadth-first traversal of the graph, beginning at start. Return the full visited path when traversal is complete.
+
+####Appreciation: The current implementation is the 4th attempt and after the code review on Wednesday. I wrote the following pysudo code during class:
+
+```
+Some pseudo Code for traverse function:
+
+add start node to the stack
+initialize empty result list (this should be a set or dict to reduce search time)
+while the stack is not empty:
+	set curser to the top of stack and remove it, pop()
+	if curser not in result:
+    append curser to the result list
+    for each neigbor in curser
+		   add neighbor to the stack
+return result
+```
+
+###program output
+```
+Run Depth First and Breadth First Traversal
+100,000 times each on the following graph
+
+        0
+      /   \
+     2      3
+    / \    / \
+   4   5  6   7
+
+Depth First Traversal  : [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:01.647541
+Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
+```
+
+
+Dependencies
+# PIP
 
 Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/

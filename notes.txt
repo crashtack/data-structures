@@ -1,0 +1,7 @@
+graph traversal
+-----------------------
+#Breadth traversal
+* collect neighbors first
+* then collect there neighbors
+
+Depth traversal
