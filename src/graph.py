@@ -6,23 +6,27 @@ from queue_ import Queue
 class Graph(object):
 
     def __init__(self, initial_graph=None):
-        '''Pass in a graph in the form of a dictionary with the nodes as
-        key, and a list of edges as value, for example
-        {1:[2, 3]},
-         2:[]},
-         3:[1]}
+        '''Pass in a graph in the form of a dictionary with the nodes as 
+        key, and a dictoinary containing edges as keys and wieghts as values
+        {1:{2:100, 3:299},
+         2:{},
+         3:{1:150}}
         '''
         if initial_graph is None:
-            self.graph = {}
-        else:
+                self.graph = {}
+        elif isinstance(initial_graph, dict):
             self.graph = initial_graph
+        else:
+            raise TypeError("Please pass a dictionary")
 
     def __iter__(self):
         return iter(self.graph)
 
     def nodes(self):
         '''return a list of all nodes in the graph'''
-        return self.graph.keys()
+        # return self.depth_first_traversal(self.graph)
+
+        return list(self.graph.keys())
 
     def edges(self):
         '''returns a list of tuples, that are edges'''
@@ -33,19 +37,17 @@ class Graph(object):
         if n in self.graph:
             raise ValueError('Node already exists please try again')
         else:
-            self.graph[n] = []
+            self.graph[n] = {}
 
-    def add_edge(self, n1, n2):
+    def add_edge(self, n1, n2, w):
         '''adds a new edge to the graph connecting n1 and n2, if either
            n1 or n2 are not already present in the graph, they are added.'''
         if n2 not in self.graph:
-            self.graph[n2] = []
-        if n1 in self.graph:
-            self.graph[n1].append(n2)
-        else:
-            self.graph[n1] = [n2]
+            self.graph[n2] = {}
+        self.graph[n1] = {n2: w}
 
     def del_node(self, n):
+        '''deleates node n'''
         if n in self.graph.keys():
             self.graph.pop(n)
         else:
@@ -55,7 +57,7 @@ class Graph(object):
         '''deletes the edge connecting n1 and n2 from the graph,
         raises an error if no such edge exists'''
         if (n1 in self.graph) and (n2 in self.graph):
-            self.graph[n1].remove(n2)
+            del(self.graph[n1][n2])
         else:
             raise ValueError('That node does not exist')
 

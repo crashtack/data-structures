@@ -41,7 +41,7 @@ Implement a binary heap in Python:
  * push(): puts a new value into the heap, maintaining the heap property.
  * pop(): removes the “top” value in the heap, maintaining the heap property.
 
- Implement a graph in Python:
+ Implement a graph with weighted edges in Python:
 
 * nodes(): return a list of all nodes in the graph
 * edges(): return a list of all edges in the graph

@@ -4,15 +4,16 @@ import pytest
 
 TABLE = [(
     [1, 2, 3],
-    [[2, 3], [], [1]]
+    [{2: 100, 3: 299}, {}, {1: 150}]
 )]
 
 
 @pytest.fixture
 def initial_graph():
-    graph = {1: [2, 3],
-             2: [],
-             3: [1]}
+    graph = {1: {2: 100, 3: 299},
+             2: {},
+             3: {1: 150}
+             }
     return graph
 
 
@@ -88,32 +89,32 @@ def test_graph_add_edge_existing_node(initial_graph):
     '''Test add_edge adds an edge'''
     from graph import Graph
     g = Graph(initial_graph)
-    g.add_edge(2, 3)
-    assert g.graph[2] == [3]
+    g.add_edge(2, 3, 100)
+    assert g.graph[2] == {3: 100}
 
 
 def test_graph_add_edge_new_node(initial_graph):
     '''Test add_edge adds an edge when a new node is passed'''
     from graph import Graph
     g = Graph(initial_graph)
-    g.add_edge(5, 2)
-    assert g.graph[5] == [2]
+    g.add_edge(5, 2, 200)
+    assert g.graph[5] == {2: 200}
 
 
 def test_graph_add_edge_new_edge_node(initial_graph):
     '''Test add_edge adds an edge when a new node is passed as the edge'''
     from graph import Graph
     g = Graph(initial_graph)
-    g.add_edge(5, 6)
-    assert g.graph[6] == []
+    g.add_edge(5, 6, 150)
+    assert g.graph[6] == {}
 
 
 def test_graph_add_edge_new_node_and_new_edge_node(initial_graph):
     '''Test add_edge adds an edge when a new node is passed as the edge'''
     from graph import Graph
     g = Graph(initial_graph)
-    g.add_edge(6, 7)
-    assert g.graph[6] == [7]
+    g.add_edge(6, 7, 300)
+    assert g.graph[6] == {7: 300}
 
 
 def test_graph_del_node(initial_graph):
@@ -145,7 +146,7 @@ def test_graph_del_edge(initial_graph):
     from graph import Graph
     g = Graph(initial_graph)
     g.del_edge(1, 3)
-    assert g.graph[1] == [2]
+    assert g.graph[1] == {2: 100}
 
 
 def test_graph_del_edge_not_there(initial_graph):
@@ -174,7 +175,7 @@ def test_graph_neighbors(initial_graph):
     '''tests has_node on a node we have'''
     from graph import Graph
     g = Graph(initial_graph)
-    assert g.neighbors(1) == [2, 3]
+    assert g.neighbors(1) == {2: 100, 3: 299}
 
 
 def test_graph_neighbors_not_in_graph(initial_graph):
