@@ -1,4 +1,6 @@
 # -*- coding utf-8 -*-
+from stack import Stack
+from queue_ import Queue
 
 
 class Graph(object):
@@ -34,8 +36,8 @@ class Graph(object):
             self.graph[n] = []
 
     def add_edge(self, n1, n2):
-        '''adds a new edge to the graph connecting ‘n1’ and ‘n2’, if either n1 or n2 are not already
-         present in the graph, they are added.'''
+        '''adds a new edge to the graph connecting n1 and n2, if either
+           n1 or n2 are not already present in the graph, they are added.'''
         if n2 not in self.graph:
             self.graph[n2] = []
         if n1 in self.graph:
@@ -50,7 +52,7 @@ class Graph(object):
             raise ValueError('That node does not exist')
 
     def del_edge(self, n1, n2):
-        '''deletes the edge connecting ‘n1’ and ‘n2’ from the graph, 
+        '''deletes the edge connecting n1 and n2 from the graph,
         raises an error if no such edge exists'''
         if (n1 in self.graph) and (n2 in self.graph):
             self.graph[n1].remove(n2)
@@ -58,11 +60,12 @@ class Graph(object):
             raise ValueError('That node does not exist')
 
     def has_node(self, n):
-        '''True if node ‘n’ is contained in the graph, False if not.'''
+        '''True if node n is contained in the graph, False if not.'''
         return n in self.graph
 
     def neighbors(self, n):
-        '''returns the list of all nodes connected to ‘n’ by edges, raises an error if n is not in graph'''
+        '''returns the list of all nodes connected to n by edges,
+         raises an error if n is not in graph'''
         if n in self.graph:
             return self.graph.get(n)
         else:
@@ -79,18 +82,56 @@ class Graph(object):
         else:
             raise ValueError('That node does not exist')
 
+    def _traverse(self, start, add, remove, size):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        result = []
+        add(start)
+        while size():
+            curser = remove()
+            if curser not in result:
+                result.append(curser)
+                for neighbor in self.graph[curser]:
+                    add(neighbor)
+        return result
+
+    def depth_first_traversal(self, start_node):
+        '''perform a depth first traversal, returns a list of
+           nodes in the graph
+        '''
+        s = Stack()
+        return self._traverse(start_node, s.push, s.pop, s.size)
+
+    def breadth_first_traversal(self, start_node):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        q = Queue()
+        return self._traverse(start_node, q.enqueue, q.dequeue, q.size)
 
 
+if __name__ == '__main__':
+    from datetime import datetime
+    g = Graph({1: [2, 3], 2: [4, 5], 3: [6, 7], 4: [], 5: [], 6: [], 7: []})
 
+    print('\n\nRun Depth First and Breadth First Traversal\n'
+          '100,000 times each on the following graph')
+    message = '''
+        0
+      /   \\
+     2      3
+    / \\    / \\
+   4   5  6   7
+   '''
+    print(message)
+    now = datetime.now()
+    for i in range(100000):
+        result = g.depth_first_traversal(1)
+    runtime = datetime.now() - now
+    print('Depth First Traversal  : {} Run time: {}'.format(result, runtime))
 
+    for i in range(100000):
+        result = g.depth_first_traversal(1)
+    runtime = datetime.now() - now
 
-
-
-
-
-
-
-
-
-
-
+    print('Breadth First Traversal: {} Run time: {}'.format(result, runtime))
