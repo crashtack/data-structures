@@ -6,7 +6,7 @@ from queue_ import Queue
 class Graph(object):
 
     def __init__(self, initial_graph=None):
-        '''Pass in a graph in the form of a dictionary with the nodes as 
+        '''Pass in a graph in the form of a dictionary with the nodes as
         key, and a dictoinary containing edges as keys and wieghts as values
         {1:{2:100, 3:299},
          2:{},
@@ -41,10 +41,11 @@ class Graph(object):
 
     def add_edge(self, n1, n2, w):
         '''adds a new edge to the graph connecting n1 and n2, if either
-           n1 or n2 are not already present in the graph, they are added.'''
-        if n2 not in self.graph:
-            self.graph[n2] = {}
-        self.graph[n1] = {n2: w}
+        #    n1 or n2 are not already present in the graph, they are added.'''
+        # import pdb; pdb.set_trace()
+        self.graph.setdefault(n2, {})
+        self.graph.setdefault(n1, {})
+        self.graph[n1].setdefault(n2, w)
 
     def del_node(self, n):
         '''deleates node n'''
