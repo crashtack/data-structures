@@ -1,9 +1,12 @@
 # -*- coding utf-8 -*-
+"""Test suite for Binary Search Tree."""
 import pytest
 from bst import BST
 
+
 @pytest.fixture
-def init_BST():
+def test_bst():
+    """Test fixture for a binary search tree."""
     bst = BST()
     bst.insert(5)
     bst.insert(4)
@@ -15,12 +18,12 @@ def init_BST():
 
 
 def test_include():
-    '''test that BST can be included'''
+    """Test that BST can be included."""
     from bst import BST
 
 
 def test_init_size():
-    '''test initial size'''
+    """Test initial size."""
     from bst import BST
     bst = BST()
     # import pdb; pdb.set_trace()
@@ -28,7 +31,7 @@ def test_init_size():
 
 
 def test_init_root():
-    '''test BST initialize root as None'''
+    """Test BST initialize root as None."""
     from bst import BST
     bst = BST()
     # import pdb; pdb.set_trace()
@@ -36,7 +39,7 @@ def test_init_root():
 
 
 def test_insert_size():
-    '''test size increments on insert.'''
+    """Test size increments on insert."""
     from bst import BST
     bst = BST()
     bst.insert(1)
@@ -44,7 +47,7 @@ def test_insert_size():
 
 
 def test_insert_value():
-    '''test that an inserted node has correct value.'''
+    """Test that an inserted node has correct value."""
     from bst import BST
     bst = BST()
     bst.insert(4)
@@ -53,7 +56,7 @@ def test_insert_value():
 
 
 def test_insert_right_node_None():
-    '''test to see if inserted node does not change other node.'''
+    """Test to see if inserted node does not change other node."""
     from bst import BST
     bst = BST()
     bst.insert(4)
@@ -61,7 +64,8 @@ def test_insert_right_node_None():
     assert bst.root.right is None
 
 
-def test_insert_depth():
+def test_insert_second_depth_level():
+    """Test to see if inserted node goes to the correct place."""
     from bst import BST
     bst = BST()
     bst.insert(4)
@@ -70,7 +74,8 @@ def test_insert_depth():
     assert bst.root.left.right.value == 3
 
 
-def test_insert5():
+def test_insert_check_size():
+    """Check to see if size is correct after several inserts."""
     from bst import BST
     bst = BST()
     bst.insert(4)
@@ -79,9 +84,11 @@ def test_insert5():
     assert bst.size == 3
 
 
-def test_coontains(init_BST):
-    assert init_BST.contains(7) is True
+def test_coontains(test_bst):
+    """Check to see if 7 is in the test bst."""
+    assert test_bst.contains(7) is True
 
 
-def test_coontains_false(init_BST):
-    assert init_BST.contains(6) is False
+def test_coontains_false(test_bst):
+    """Check to see if 6 is not in the test bst."""
+    assert test_bst.contains(6) is False
