@@ -108,3 +108,9 @@ def test_depth_empty():
 def test_balance(test_bst):
     '''check the depth of the left branch'''
     assert test_bst.balance() == 0
+
+
+def test_balance_right(test_bst):
+    '''check the depth of the left branch'''
+    test_bst.insert(12)
+    assert test_bst.balance() == -1
