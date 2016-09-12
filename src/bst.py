@@ -43,7 +43,6 @@ class Node(object):
             yield "\t%s -> null%s;" % (self.value, r)
 
 
-
 class BST(object):
 
     def __init__(self, root=None):
