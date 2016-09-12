@@ -1,4 +1,5 @@
 # -*- coding utf-8 -*-
+import random
 
 
 class Node(object):
@@ -9,6 +10,38 @@ class Node(object):
         self.value = value
         self.left = left
         self.right = right
+
+    def get_dot(self):
+        '''
+            returns the tree with root "self" as a dot graph for
+            visualization
+        '''
+        return "digraph G{\n%s}" % ("" if self.value is None else (
+            "\t%s;\n%s\n" % (
+                self.value,
+                "\n".join(self._get_dot())
+            )
+        ))
+
+    def _get_dot(self):
+        '''recursively prepare a dot graph entry for this node'''
+        if self.left is not None:
+            yield "\t%s -> %s;" % (self.value, self.left.value)
+            for i in self.left._get_dot():
+                yield i
+        elif self.right is not None:
+            r = random.randint(0, 1e9)
+            yield "\tnull%s [shape=point];" % r
+            yield "\t%s -> null%s;" % (self.value, r)
+        if self.right is not None:
+            yield "\t%s -> %s;" % (self.value, self.right.value)
+            for i in self.right._get_dot():
+                yield i
+        elif self.left is not None:
+            r = random.randint(0, 1e9)
+            yield "\tnull%s [shape=point];" % r
+            yield "\t%s -> null%s;" % (self.value, r)
+
 
 
 class BST(object):
@@ -39,7 +72,6 @@ class BST(object):
                     else:
                         current = current.left
         self.size += 1
-        
 
     def contains(self, val):
         '''returns True if val is in the Tree'''
@@ -58,7 +90,6 @@ class BST(object):
                 else:
                     current = current.left
 
-
     def depth(self):
         '''returns the total number of levels'''
         pass
@@ -69,3 +100,17 @@ class BST(object):
             value.
         '''
         pass
+
+
+
+if __name__ == "__main__":
+
+    bst = BST()
+    bst.insert(5)
+    bst.insert(4)
+    bst.insert(2)
+    bst.insert(8)
+    bst.insert(7)
+    bst.insert(9)
+
+    print(bst.root.get_dot())
