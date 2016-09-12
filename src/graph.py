@@ -66,7 +66,7 @@ class Graph(object):
         return n in self.graph
 
     def neighbors(self, n):
-        '''returns the list of all nodes connected to n by edges,
+        '''returns the dictionary of edges connected to n {2: 100, 3: 299},
          raises an error if n is not in graph'''
         if n in self.graph:
             return self.graph.get(n)
