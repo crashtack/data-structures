@@ -96,6 +96,7 @@ def test_graph_add_edge_existing_node(initial_graph):
 def test_graph_add_edge_new_node(initial_graph):
     '''Test add_edge adds an edge when a new node is passed'''
     from graph import Graph
+    # import pdb; pdb.set_trace()
     g = Graph(initial_graph)
     g.add_edge(5, 2, 200)
     assert g.graph[5] == {2: 200}
@@ -113,8 +114,23 @@ def test_graph_add_edge_new_node_and_new_edge_node(initial_graph):
     '''Test add_edge adds an edge when a new node is passed as the edge'''
     from graph import Graph
     g = Graph(initial_graph)
+    # import pdb; pdb.set_trace()
     g.add_edge(6, 7, 300)
     assert g.graph[6] == {7: 300}
+
+
+def test_graph_add_lots_of_edges(initial_graph):
+    '''Test add_edge adding lots of edges'''
+    from graph import Graph
+    g = Graph(initial_graph)
+    # import pdb; pdb.set_trace()
+    g.add_edge(6, 7, 300)
+    g.add_edge(6, 9, 300)
+    g.add_edge(6, 1, 300)
+    g.add_edge(6, 3, 300)
+    import pdb; pdb.set_trace()
+
+    assert g.graph[6] == {7: 300, 9: 300, 1: 300, 3: 300}
 
 
 def test_graph_del_node(initial_graph):
