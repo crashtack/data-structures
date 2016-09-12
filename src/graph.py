@@ -13,9 +13,11 @@ class Graph(object):
          3:[1]}
         '''
         if initial_graph is None:
-            self.graph = {}
-        else:
+                self.graph = {}
+        elif isinstance(initial_graph, dict):
             self.graph = initial_graph
+        else:
+            raise TypeError("Please pass a dictionary")
 
     def __iter__(self):
         return iter(self.graph)
@@ -67,20 +69,17 @@ class Graph(object):
         '''returns the list of all nodes connected to n by edges,
          raises an error if n is not in graph'''
         if n in self.graph:
-            return self.graph.get(n)
+            return self.graph[n]
         else:
-            raise ValueError('That node does not exist')
+            raise ValueError('The node you passed does not exist')
 
     def adjacent(self, n1, n2):
         '''returns True if there is an edge connecting n1 and n2, False if not,
     raises an error if either of the supplied nodes are not in graph'''
         if (n1 in self.graph) and (n2 in self.graph):
-            if n2 in self.graph[n1]:
-                return True
-            else:
-                return False
+            return n2 in self.graph[n1]
         else:
-            raise ValueError('That node does not exist')
+            raise ValueError('One or both of the nodes you passed does not exist')
 
     def _traverse(self, start, add, remove, size):
         '''Traverse function
