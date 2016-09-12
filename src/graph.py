@@ -25,7 +25,6 @@ class Graph(object):
     def nodes(self):
         '''return a list of all nodes in the graph'''
         # return self.depth_first_traversal(self.graph)
-
         return list(self.graph.keys())
 
     def edges(self):
@@ -34,10 +33,8 @@ class Graph(object):
 
     def add_node(self, n):
         '''takes node and adds it to the graph'''
-        if n in self.graph:
+        if self.graph.setdefault(n, {}):
             raise ValueError('Node already exists please try again')
-        else:
-            self.graph[n] = {}
 
     def add_edge(self, n1, n2, w):
         '''adds a new edge to the graph connecting n1 and n2, if either

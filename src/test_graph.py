@@ -128,7 +128,7 @@ def test_graph_add_lots_of_edges(initial_graph):
     g.add_edge(6, 9, 300)
     g.add_edge(6, 1, 300)
     g.add_edge(6, 3, 300)
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     assert g.graph[6] == {7: 300, 9: 300, 1: 300, 3: 300}
 
@@ -184,7 +184,7 @@ def test_graph_has_node_flase(initial_graph):
     '''tests has_node on a node we fo not have'''
     from graph import Graph
     g = Graph(initial_graph)
-    assert g.has_node(9) == False
+    assert g.has_node(9) is False
 
 
 def test_graph_neighbors(initial_graph):
