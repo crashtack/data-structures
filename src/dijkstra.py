@@ -45,4 +45,5 @@ def dijkstra(graph, start, finish):
     shortest_path = []
     for k in visited.keys():
         shortest_path.append(k)
-    return visited, path, shortest_path, weight
+    # return visited, path, shortest_path, weight
+    return shortest_path
