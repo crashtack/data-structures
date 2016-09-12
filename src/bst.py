@@ -48,35 +48,37 @@ class BST(object):
     def __init__(self, root=None):
         '''Initialize the Tree'''
         self.size = 0
-        self.depth = 0
+        self.depth_left = 0
+        self.depth_right = 0
+
         self.root = root
 
     def insert(self, val):
         '''insert a node with with value=val'''
         new_node = Node(value=val)
         current = self.root
-        depth = 1
+        depth_right = 1
+        depth_left = 1
         if self.root is None:
             self.root = new_node
-            self.depth = depth
         else:
             while True:
                 if new_node.value > current.value:
                     if current.right is None:
                         current.right = new_node
-                        self.depth = max(depth, self.depth)
+                        self.depth_right = max(depth_right, self.depth_right)
                         break
                     else:
                         current = current.right
-                        depth += 1
+                        depth_right += 1
                 else:
                     if current.left is None:
                         current.left = new_node
-                        self.depth = max(depth, self.depth)
+                        self.depth = max(depth_left, self.depth_left)
                         break
                     else:
                         current = current.left
-                        depth += 1
+                        depth_left += 1
         self.size += 1
 
     def contains(self, val):
@@ -98,15 +100,14 @@ class BST(object):
 
     def depth(self):
         '''returns the total number of levels'''
-        pass
+        return max(self.depth_left, self.depth_right)
 
     def balance(self):
         '''returns the difference in size in depth of the left and right
             half of the Tree. greater depth on the left returns a positive
             value.
         '''
-        pass
-
+        return self.depth_left - self.depth_right
 
 
 if __name__ == "__main__":

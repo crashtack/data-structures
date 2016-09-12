@@ -92,3 +92,9 @@ def test_coontains(test_bst):
 def test_coontains_false(test_bst):
     """Check to see if 6 is not in the test bst."""
     assert test_bst.contains(6) is False
+
+
+def test_depth(test_bst):
+    '''check the depth of the left branch'''
+    # import pdb; pdb.set_trace()
+    assert test_bst.depth() == 3
