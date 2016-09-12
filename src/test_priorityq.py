@@ -29,14 +29,14 @@ def test_priorityq_none():
     '''Tests initialization of the priorityq class with None'''
     from priorityq import Priorityq
     pq = Priorityq()
-    assert pq.priorityq is None
+    assert pq.priorityq is []
 
 
 def test_priorityq_noniterable():
     '''Tests initialization of the priorityq class with a non-iterable'''
     from priorityq import Priorityq
     with pytest.raises(TypeError):
-        pq = Priorityq(4)
+        Priorityq(4)
 
 
 @pytest.mark.parametrize('input_d, result, result2', TABLE)

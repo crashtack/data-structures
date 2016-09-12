@@ -7,7 +7,7 @@ class Priorityq(object):
         '''Initialise a Priorityq from a list of lists or tuples
             where the zeroeth element is the priority'''
         if iterable is None:
-            self.priorityq = None
+            self.priorityq = []
         else:
             try:
                 self.priorityq = sorted(iterable, key=lambda tup: tup[0])
@@ -17,9 +17,11 @@ class Priorityq(object):
                                 'the first value')
 
     def insert(self, item):
-        ''' inserts an item into the queue.'''
+        ''' inserts an item into the queue.
+        items need to be tuples with the priority as the zeroth element 
+        and the value as the next element.'''
         if item is None:
-            raise ValueError('insert requires a tuple')
+            raise ValueError('insert requires a tuple with the priority as the zeroth element and the value as the next element.')
         elif self.priorityq is None:
             self.priorityq = [item]
         else:
