@@ -96,5 +96,15 @@ def test_coontains_false(test_bst):
 
 def test_depth(test_bst):
     '''check the depth of the left branch'''
-    # import pdb; pdb.set_trace()
     assert test_bst.depth() == 3
+
+
+def test_depth_empty():
+    '''check the depth of an empty graph'''
+    bst = BST()
+    assert bst.depth() == 0
+
+
+def test_balance(test_bst):
+    '''check the depth of the left branch'''
+    assert test_bst.balance() == 0

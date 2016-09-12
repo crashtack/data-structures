@@ -55,6 +55,7 @@ class BST(object):
 
     def insert(self, val):
         '''insert a node with with value=val'''
+        # import pdb; pdb.set_trace()
         new_node = Node(value=val)
         current = self.root
         depth_right = 1
@@ -64,21 +65,21 @@ class BST(object):
         else:
             while True:
                 if new_node.value > current.value:
+                    depth_right += 1
                     if current.right is None:
                         current.right = new_node
                         self.depth_right = max(depth_right, self.depth_right)
                         break
                     else:
                         current = current.right
-                        depth_right += 1
                 else:
+                    depth_left += 1
                     if current.left is None:
                         current.left = new_node
-                        self.depth = max(depth_left, self.depth_left)
+                        self.depth_left = max(depth_left, self.depth_left)
                         break
                     else:
                         current = current.left
-                        depth_left += 1
         self.size += 1
 
     def contains(self, val):
@@ -119,5 +120,6 @@ if __name__ == "__main__":
     bst.insert(8)
     bst.insert(7)
     bst.insert(9)
+    bst.depth()
 
-    print(bst.root.get_dot())
+    # print(bst.root.get_dot())
