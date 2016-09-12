@@ -89,7 +89,12 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 ```
 
 
-Dependencies
+# Shortest path
+* not dijkstra's algorithem is not currently working
+
+
+
+#Dependencies
 # PIP
 
 Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
