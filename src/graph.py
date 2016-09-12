@@ -41,7 +41,9 @@ class Graph(object):
 
     def add_edge(self, n1, n2, w):
         '''adds a new edge to the graph connecting n1 and n2, if either
-        #    n1 or n2 are not already present in the graph, they are added.'''
+        #    n1 or n2 are not already present in the graph, they are added.
+           Does not allow an Edge weight to be updated.
+        '''
         # import pdb; pdb.set_trace()
         self.graph.setdefault(n2, {})
         self.graph.setdefault(n1, {})
