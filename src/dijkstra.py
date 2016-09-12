@@ -1,3 +1,10 @@
+'''
+    Appreciation: https://gist.github.com/econchick/4666413
+                  http://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php
+                  http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
+                  https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
+'''
 from graph import Graph
 
 
