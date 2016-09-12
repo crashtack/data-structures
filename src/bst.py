@@ -49,28 +49,35 @@ class BST(object):
     def __init__(self, root=None):
         '''Initialize the Tree'''
         self.size = 0
+        self.depth = 0
         self.root = root
 
     def insert(self, val):
         '''insert a node with with value=val'''
         new_node = Node(value=val)
         current = self.root
+        depth = 1
         if self.root is None:
             self.root = new_node
+            self.depth = depth
         else:
             while True:
                 if new_node.value > current.value:
                     if current.right is None:
                         current.right = new_node
+                        self.depth = max(depth, self.depth)
                         break
                     else:
                         current = current.right
+                        depth += 1
                 else:
                     if current.left is None:
                         current.left = new_node
+                        self.depth = max(depth, self.depth)
                         break
                     else:
                         current = current.left
+                        depth += 1
         self.size += 1
 
     def contains(self, val):
