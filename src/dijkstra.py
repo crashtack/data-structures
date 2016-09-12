@@ -13,7 +13,7 @@ GRAPH = {1: {2: 100, 3: 299}, 2: {3: 50}, 3: {1: 150}}
 
 def dijkstra(graph, start, finish):
     '''returns the shortest path between 2 nodes in a weighted graph
-        and the total distance as a tuple ((1, 2, 3), 50)'''
+        '''
     visited = {start: 0}
     path = {}
 
