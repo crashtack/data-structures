@@ -38,17 +38,26 @@ class BST(object):
                         break
                     else:
                         current = current.left
-
-
-
-
-
-
         self.size += 1
+        
 
     def contains(self, val):
         '''returns True if val is in the Tree'''
-        pass
+        current = self.root
+        while True:
+            if val == current.value:
+                return True
+            elif val > current.value:
+                if current.right is None:
+                    return False
+                else:
+                    current = current.right
+            else:
+                if current.left is None:
+                    return False
+                else:
+                    current = current.left
+
 
     def depth(self):
         '''returns the total number of levels'''
