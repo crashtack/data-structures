@@ -132,15 +132,14 @@ def test_balance(known_bst):
     assert known_bst[0].balance() == 0
 
 
-def test_balance_right(known_bst):
+def test_balance_2(known_bst):
     '''check the depth of the left branch'''
     known_bst[0].insert(12)
-    assert known_bst[0].balance() == -1
-
+    assert known_bst[0].balance() == known_bst[2] - 1
 
 def test_balance_right2(our_bsts):
     '''test the balance method'''
-    assert our_bsts[0].depth() == our_bsts[2]
+    assert our_bsts[0].depth() == our_bsts[1]
 
 def test_depth_known(our_bsts):
     '''test the depth method'''
