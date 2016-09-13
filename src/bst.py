@@ -122,12 +122,13 @@ class BST(object):
 if __name__ == "__main__":
 
     bst = BST()
-    bst.insert(5)
-    bst.insert(4)
-    bst.insert(2)
-    bst.insert(8)
-    bst.insert(7)
-    bst.insert(9)
-    bst.depth()
+    my_list = [3, 1, 8, 5, 1, 6, 3, 9, 3]
+    for item in my_list:
+        bst.insert(item)
+
+    print(bst.root.get_dot())
+
+
+
 
     # print(bst.root.get_dot())
