@@ -1,11 +1,12 @@
 # -*- coding utf-8 -*-
 """Test suite for Binary Search Tree."""
 import pytest
+import random
 from bst import BST
 
 
 @pytest.fixture
-def test_bst():
+def known_bst():
     """Test fixture for a binary search tree."""
     bst = BST()
     bst.insert(5)
@@ -14,7 +15,28 @@ def test_bst():
     bst.insert(8)
     bst.insert(7)
     bst.insert(9)
-    return bst
+    return bst, 3, 0
+
+@pytest.fixture
+def straight_bst():
+    """Test fixture for a binary search tree."""
+    bst = BST()
+    for i in range(1, 10):
+        bst.insert(i)
+    return bst, 10, -9
+
+FDSA = [
+    ([5,4,2,8,7,9], 3, 0)
+]
+
+@pytest.fixture(params=FDSA)
+def our_bsts(request):
+    from bst import BST
+    bst = BST()
+    for item in request.param[0]:
+        bst.insert(item)
+    return bst, request.param[1], request.param[2]
+
 
 
 def test_include():
@@ -84,19 +106,19 @@ def test_insert_check_size():
     assert bst.size == 3
 
 
-def test_coontains(test_bst):
+def test_coontains(known_bst):
     """Check to see if 7 is in the test bst."""
-    assert test_bst.contains(7) is True
+    assert known_bst[0].contains(7) is True
 
 
-def test_coontains_false(test_bst):
+def test_coontains_false(known_bst):
     """Check to see if 6 is not in the test bst."""
-    assert test_bst.contains(6) is False
+    assert known_bst[0].contains(6) is False
 
 
-def test_depth(test_bst):
+def test_depth(known_bst):
     '''check the depth of the left branch'''
-    assert test_bst.depth() == 3
+    assert known_bst[0].depth() == 3
 
 
 def test_depth_empty():
@@ -105,12 +127,21 @@ def test_depth_empty():
     assert bst.depth() == 0
 
 
-def test_balance(test_bst):
+def test_balance(known_bst):
     '''check the depth of the left branch'''
-    assert test_bst.balance() == 0
+    assert known_bst[0].balance() == 0
 
 
-def test_balance_right(test_bst):
+def test_balance_right(known_bst):
     '''check the depth of the left branch'''
-    test_bst.insert(12)
-    assert test_bst.balance() == -1
+    known_bst[0].insert(12)
+    assert known_bst[0].balance() == -1
+
+
+def test_balance_right2(our_bsts):
+    '''test the balance method'''
+    assert our_bsts[0].depth() == our_bsts[2]
+
+def test_depth_known(our_bsts):
+    '''test the depth method'''
+    assert our_bsts[0].depth() == our_bsts[1]

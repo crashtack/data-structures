@@ -10,6 +10,21 @@ class Node(object):
         self.value = value
         self.left = left
         self.right = right
+        self.depth = 1  # i added this during lecture
+
+    def insert(self, nn):   # nn =  new_node
+        if nn.value > self.value:
+            if self.right:
+                self.right.insert(nn)
+            else:
+                self.right = nn
+            self.depth = max(self.depth, self.right.depth + 1)
+        elif nn.value < self.value:
+            if self.left:
+                self.left.insert(nn)
+            else:
+                self.left = nn
+            self.depth = max(self.depth, self.left.depth + 1)
 
     def get_dot(self):
         '''
@@ -47,39 +62,20 @@ class BST(object):
 
     def __init__(self, root=None):
         '''Initialize the Tree'''
+        # TODO: what happens when bst = BST(7) is called
+        # self.root = Node(value=root)
         self.size = 0
-        self.depth_left = 0
-        self.depth_right = 0
-
         self.root = root
 
     def insert(self, val):
         '''insert a node with with value=val'''
-        # import pdb; pdb.set_trace()
         new_node = Node(value=val)
-        current = self.root
-        depth_right = 1
-        depth_left = 1
+
         if self.root is None:
             self.root = new_node
         else:
-            while True:
-                if new_node.value > current.value:
-                    depth_right += 1
-                    if current.right is None:
-                        current.right = new_node
-                        self.depth_right = max(depth_right, self.depth_right)
-                        break
-                    else:
-                        current = current.right
-                else:
-                    depth_left += 1
-                    if current.left is None:
-                        current.left = new_node
-                        self.depth_left = max(depth_left, self.depth_left)
-                        break
-                    else:
-                        current = current.left
+            self.root.insert(new_node)
+
         self.size += 1
 
     def contains(self, val):
@@ -101,14 +97,26 @@ class BST(object):
 
     def depth(self):
         '''returns the total number of levels'''
-        return max(self.depth_left, self.depth_right)
+        if self.root:
+            return self.root.depth
+        else:
+            return 0
 
     def balance(self):
         '''returns the difference in size in depth of the left and right
             half of the Tree. greater depth on the left returns a positive
             value.
         '''
-        return self.depth_left - self.depth_right
+        if self.root.left.depth is None:
+            depth_left = 0
+        else:
+            depth_left = self.root.left.depth
+
+        if self.root.right.depth is None:
+            depth_right = 0
+        else:
+            depth_right = self.root.right.depth
+        return depth_left - depth_right
 
 
 if __name__ == "__main__":
