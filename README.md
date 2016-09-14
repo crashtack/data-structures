@@ -108,15 +108,21 @@ For testing of the BST we created verious trees with random numbers.  One tree h
 values from -100 to 100.  The list that was created was:
 [-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87, -81, 90, -41, -68, -28]
 which looks like:
+
 ![Binary Search Tree](/src/5.png)
 
 Additionally we were asked to create best a worst case senarios for the search trees.  
+Best case senario:
+
 ![Best case Binary Search Tree](/src/best.png)
+
+Worst case senario:
+
 ![Worst case Binary Search Tree](/src/worst.png)
 
 
 
 ##Dependencies
 * PIP
-* graphviz
+* graphviz - for dot graphs
 * Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
