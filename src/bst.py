@@ -26,7 +26,7 @@ class Node(object):
                 self.left = nn
             self.depth = max(self.depth, self.left.depth + 1)
 
-    def get_dot(self):
+    def get_dot(self):          # pragma: no cover
         '''
             returns the tree with root "self" as a dot graph for
             visualization
@@ -38,7 +38,7 @@ class Node(object):
             )
         ))
 
-    def _get_dot(self):
+    def _get_dot(self):         # pragma: no cover
         '''recursively prepare a dot graph entry for this node'''
         if self.left is not None:
             yield "\t%s -> %s;" % (self.value, self.left.value)
@@ -107,19 +107,20 @@ class BST(object):
             half of the Tree. greater depth on the left returns a positive
             value.
         '''
-        if self.root.left.depth is None:
-            depth_left = 0
-        else:
+        try:
             depth_left = self.root.left.depth
+        except AttributeError:
+            depth_left = 0
 
-        if self.root.right.depth is None:
-            depth_right = 0
-        else:
+        try:
             depth_right = self.root.right.depth
+        except AttributeError:
+            depth_right = 0
+
         return depth_left - depth_right
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":          # pragma: no cover
 
     bst = BST()
     my_list = [3, 1, 8, 5, 1, 6, 3, 9, 3]

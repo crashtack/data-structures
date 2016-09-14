@@ -121,6 +121,11 @@ def test_coontains_false(known_bst):
     assert known_bst[0].contains(6) is False
 
 
+def test_coontains_false_2(known_bst):
+    """Check to see if 6 is not in the test bst."""
+    assert known_bst[0].contains(15) is False
+
+
 def test_depth(known_bst):
     '''check the depth of the left branch'''
     assert known_bst[0].depth() == 3
@@ -149,3 +154,8 @@ def test_balance_right2(our_bsts):
 def test_depth_known(our_bsts):
     '''test the depth method'''
     assert our_bsts[0].depth() == our_bsts[1]
+
+def test_balance_empty():
+    '''test a balance of a empty tree.'''
+    bst = BST()
+    assert bst.balance() == 0
