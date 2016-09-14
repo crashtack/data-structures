@@ -38,9 +38,39 @@ class Graph(object):
     def add_nodes(self, id_, edges):
         self.nodes.setdefault(id_, edges)
 
+    def _traverse(self, start, add, remove, size):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        result = []
+        add(start)
+        while size():
+            curser = remove()
+            if curser not in result:
+                result.append(curser)
+                for neighbor in self.graph[curser]:
+                    add(neighbor)
+        return result
+
+    def depth_first_traversal(self, start_node):
+        '''perform a depth first traversal, returns a list of
+           nodes in the graph
+        '''
+        s = Stack()
+        return self._traverse(start_node, s.push, s.pop, s.size)
+
+    def breadth_first_traversal(self, start_node):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        q = Queue()
+        return self._traverse(start_node, q.enqueue, q.dequeue, q.size)
 
 
+    def dijkstra(self, start, finish):
+        '''returns the shortest path from start to finish node'''
+        visited = {self.nodes[start]}
+        not_visited = False
 
-
+        return []
 
 #
