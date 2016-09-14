@@ -90,10 +90,17 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 
 
 ## Shortest path
+<<<<<<< HEAD
 * dijkstra's algorithem is not currently working
 
 
 ## Binary Search Tree ( branch = bst)
+=======
+* not dijkstra's algorithem is not currently working
+
+
+## Binary Search Tree
+>>>>>>> bst
 
 
 ##Dependencies
