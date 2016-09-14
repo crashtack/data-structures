@@ -171,10 +171,3 @@ def test_balance_empty():
     bst = BST()
     assert bst.balance() == 0
 
-
-def test_insert_different_types():
-    """test to see if type error is receieved if nodes of different types are entered."""
-    bst = BST()
-    bst.insert('a')
-    with pytest.raises(TypeError):
-        bst.insert(1)
