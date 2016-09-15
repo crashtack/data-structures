@@ -7,10 +7,10 @@ travarsal(add, remove, nonempty)
 
 class Node(object):
 
-
+    # pysudo code
     def in_order(self):
         for item in self.left.in_order:
             yeild item
-        for itme in self.right.in_order:
+        for item in self.right.in_order:
             yeild item
         yeild self.value

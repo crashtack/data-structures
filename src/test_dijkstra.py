@@ -35,6 +35,6 @@ def test_check_graph_creation(g):
                        3: {1: 150}}
 
 
-def test_dijk_(g):
-    '''test that dijkstra returns the shortest route'''
-    assert dijkstra(g, 1, 7) == [1, 2, 3]
+# def test_dijk_(g):
+#     '''test that dijkstra returns the shortest route'''
+#     assert dijkstra(g, 1, 7) == [1, 2, 3]

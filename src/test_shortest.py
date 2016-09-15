@@ -88,8 +88,8 @@ def test_depth_first_travers(initial_graph):
     assert initial_graph.depth_first_traversal(1) == [1, 3, 2]
 
 
-def test_dijkstra(initial_graph):
-    assert initial_graph.dijkstra(1, 3) == [2, 3]
+# def test_dijkstra(initial_graph):
+#     assert initial_graph.dijkstra(1, 3) == [2, 3]
 
 
 # def test_graph_constructor_none():

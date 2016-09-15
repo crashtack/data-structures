@@ -30,6 +30,7 @@ class Node(object):
             self.depth = max(self.depth, self.left.depth + 1)
 
     def in_order(self):
+        '''recursive in order traversal'''
         if self.left:
             for item in self.left.in_order():
                 yield item
@@ -39,6 +40,7 @@ class Node(object):
                 yield item
 
     def post_order(self):
+        '''recursive post order traversal'''
         if self.left:
             for item in self.left.post_order():
                 yield item
@@ -46,8 +48,6 @@ class Node(object):
             for item in self.right.post_order():
                 yield item
         yield self.value
-
-
 
     def get_dot(self):          # pragma: no cover
         """

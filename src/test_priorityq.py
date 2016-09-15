@@ -29,7 +29,7 @@ def test_priorityq_none():
     '''Tests initialization of the priorityq class with None'''
     from priorityq import Priorityq
     pq = Priorityq()
-    assert pq.priorityq is []
+    assert pq.priorityq == []
 
 
 def test_priorityq_noniterable():
@@ -116,13 +116,3 @@ def test_peek_none():
     pq = Priorityq()
     with pytest.raises(IndexError):
         pq.peek()
-
-
-
-
-
-
-
-
-
-

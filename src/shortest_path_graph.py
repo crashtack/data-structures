@@ -72,7 +72,7 @@ class Graph(object):
 
     def dijkstra(self, start, finish):
         '''returns the shortest path from start to finish node'''
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         visited = [start]
         not_visited = self.depth_first_traversal(start)
         not_visited = not_visited[1:]
