@@ -38,6 +38,15 @@ class Node(object):
             for item in self.right.in_order():
                 yield item
 
+    def post_order(self):
+        if self.left:
+            for item in self.left.post_order():
+                yield item
+        if self.right:
+            for item in self.right.post_order():
+                yield item
+        yield self.value
+
 
 
     def get_dot(self):          # pragma: no cover
@@ -174,6 +183,14 @@ class BST(object):
             takes in other functions and a start_node'''
         if self.root:
             return self.root.in_order()
+        else:
+            return []
+
+    def post_order(self):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        if self.root:
+            return self.root.post_order()
         else:
             return []
 
