@@ -7,10 +7,10 @@ class Graph(object):
 
     def __init__(self, initial_graph=None):
         '''Pass in a graph in the form of a dictionary with the nodes as
-        key, and a list of edges as value, for example
-        {1:[2, 3]},
-         2:[]},
-         3:[1]}
+        key, and a dictoinary containing edges as keys and wieghts as values
+        {1:{2:100, 3:299},
+         2:{},
+         3:{1:150}}
         '''
         if initial_graph is None:
                 self.graph = {}
@@ -24,7 +24,8 @@ class Graph(object):
 
     def nodes(self):
         '''return a list of all nodes in the graph'''
-        return self.graph.keys()
+        # return self.depth_first_traversal(self.graph)
+        return list(self.graph.keys())
 
     def edges(self):
         '''returns a list of tuples, that are edges'''
@@ -32,22 +33,21 @@ class Graph(object):
 
     def add_node(self, n):
         '''takes node and adds it to the graph'''
-        if n in self.graph:
+        if self.graph.setdefault(n, {}):
             raise ValueError('Node already exists please try again')
-        else:
-            self.graph[n] = []
 
-    def add_edge(self, n1, n2):
+    def add_edge(self, n1, n2, w):
         '''adds a new edge to the graph connecting n1 and n2, if either
-           n1 or n2 are not already present in the graph, they are added.'''
-        if n2 not in self.graph:
-            self.graph[n2] = []
-        if n1 in self.graph:
-            self.graph[n1].append(n2)
-        else:
-            self.graph[n1] = [n2]
+        #    n1 or n2 are not already present in the graph, they are added.
+           Does not allow an Edge weight to be updated.
+        '''
+        # import pdb; pdb.set_trace()
+        self.graph.setdefault(n2, {})
+        self.graph.setdefault(n1, {})
+        self.graph[n1].setdefault(n2, w)
 
     def del_node(self, n):
+        '''deleates node n'''
         if n in self.graph.keys():
             self.graph.pop(n)
         else:
@@ -57,7 +57,7 @@ class Graph(object):
         '''deletes the edge connecting n1 and n2 from the graph,
         raises an error if no such edge exists'''
         if (n1 in self.graph) and (n2 in self.graph):
-            self.graph[n1].remove(n2)
+            del(self.graph[n1][n2])
         else:
             raise ValueError('That node does not exist')
 
@@ -66,7 +66,7 @@ class Graph(object):
         return n in self.graph
 
     def neighbors(self, n):
-        '''returns the list of all nodes connected to n by edges,
+        '''returns the dictionary of edges connected to n {2: 100, 3: 299},
          raises an error if n is not in graph'''
         if n in self.graph:
             return self.graph[n]
