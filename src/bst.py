@@ -1,5 +1,6 @@
 # -*- coding utf-8 -*-
 import random
+from queue import Queue
 
 
 class Node(object):
@@ -122,6 +123,26 @@ class BST(object):
             depth_right = 0
 
         return depth_left - depth_right
+
+    def _traverse(self, start, add, remove, size):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        add(start)
+        while size():
+            x = remove()
+            if x:
+                add(x.left)
+                add(x.right)
+                yield x.value
+
+    def breadth_first_traversal(self):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        q = Queue()
+        start_node = self.root
+        return self._traverse(start_node, q.enqueue, q.dequeue, q.size)
+
 
 
 if __name__ == "__main__":          # pragma: no cover

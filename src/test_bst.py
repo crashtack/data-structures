@@ -171,3 +171,9 @@ def test_balance_empty():
     bst = BST()
     assert bst.balance() == 0
 
+def test_breath_first_traversal(our_bsts):
+    '''test that breadtch first traversal work'''
+    bft = []
+    for i in our_bsts.breadth_first_traversal():
+        bft.append(i)
+    assert our_bsts.breadth_first_traversal == []
