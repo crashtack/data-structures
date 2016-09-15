@@ -1,7 +1,7 @@
 # -*- coding utf-8 -*-
 import random
 from queue_ import Queue
-
+from stack import Stack
 
 class Node(object):
     """Implement a Node class with value, left and right."""
@@ -124,15 +124,13 @@ class BST(object):
 
         return depth_left - depth_right
 
-    def _traverse(self, start, add, remove, size):
+    def _traverse(self, add, remove, size):
         '''Traverse function
             takes in other functions and a start_node'''
-        add(start)
         while size():
             x = remove()
             if x:
-                add(x.left)
-                add(x.right)
+                add(x.left, x.right)
                 yield x.value
 
     def breadth_first_traversal(self):
@@ -140,8 +138,26 @@ class BST(object):
            nodes in the graph
         '''
         q = Queue()
-        start_node = self.root
-        return self._traverse(start_node, q.enqueue, q.dequeue, q.size)
+        q.enqueue(self.root)
+
+        def add(a, b):
+            q.enqueue(a)
+            q.enqueue(b)
+
+        return self._traverse(add, q.dequeue, q.size)
+
+
+    def pre_order(self):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        s = Stack()
+        s.push(self.root)
+
+        def add(a, b):
+            s.push(b)
+            s.push(a)
+        return self._traverse(add, s.pop, s.size)
 
 
 

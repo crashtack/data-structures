@@ -26,16 +26,16 @@ def straight_bst():
     return bst, 10, -9
 
 FDSA = [
-    ([5, 4, 2, 8, 7, 9], 3, 0, [5, 4, 8, 2, 7, 9]),
-    ([4, 9, 3, 5, 5, 8, 6, 2, 4], 5, -2, [4, 3, 9, 2, 5, 8, 6]),
-    ([5, 5, 6, 9, 8, 2, 8, 2, 8], 4, -2, [5, 2, 6, 9, 8]),
-    ([7, 6, 2, 2, 2, 9, 9, 5, 9], 4, 2, [7, 6, 9, 2, 5]),
-    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 4, -2, [3, 1, 8, 5, 9, 6]),
+    ([5, 4, 2, 8, 7, 9], 3, 0, [5, 4, 8, 2, 7, 9], [5, 4, 2, 8, 7, 9]),
+    ([4, 9, 3, 5, 5, 8, 6, 2, 4], 5, -2, [4, 3, 9, 2, 5, 8, 6], [4, 3, 2, 9, 5, 8, 6]),
+    ([5, 5, 6, 9, 8, 2, 8, 2, 8], 4, -2, [5, 2, 6, 9, 8], [5, 2, 6, 9, 8]),
+    ([7, 6, 2, 2, 2, 9, 9, 5, 9], 4, 2, [7, 6, 9, 2, 5], [7, 6, 2, 5, 9]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 4, -2, [3, 1, 8, 5, 9, 6], [3, 1, 8, 5, 6, 9]),
     ([-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87,
-        -81, 90, -41, -68, -28], 6, 1, [-14, -43, 48, -98, -35, -10, 94, -71, -41, -28, 35, 75, -87, -64, 73, 90, -81, -68]),
+        -81, 90, -41, -68, -28], 6, 1, [-14, -43, 48, -98, -35, -10, 94, -71, -41, -28, 35, 75, -87, -64, 73, 90, -81, -68], [-14, -43, -98, -71, -87, -81, -64, -68, -35, -41, -28, 48, -10, 35, 94, 75, 73, 90]),
     (['w', 'p', 'R', 'N', 'U', 's', 'q', 'w', 'y', 'i', 'l', 'k', 'N',
-        'O', 'k', 'd', 'v', 'c', 'u'], 7, 6, list('wpyRsNUqvOiudlck')),
-    ([], 0, 0, [])
+        'O', 'k', 'd', 'v', 'c', 'u'], 7, 6, list('wpyRsNUqvOiudlck'), list('wpRNOUidclksqvuy')),
+    ([], 0, 0, [], [])
 ]
 
 
@@ -45,7 +45,7 @@ def our_bsts(request):
     bst = BST()
     for item in request.param[0]:
         bst.insert(item)
-    return bst, request.param[1], request.param[2], request.param[3]
+    return bst, request.param[1], request.param[2], request.param[3], request.param[4]
 
 
 def test_include():
@@ -174,3 +174,11 @@ def test_breath_first_traversal(our_bsts):
     for i in our_bsts[0].breadth_first_traversal():
         bft.append(i)
     assert bft == our_bsts[3]
+
+
+def test_pre_order_traversal(our_bsts):
+    '''test that breadtch first traversal work'''
+    bpo = []
+    for i in our_bsts[0].pre_order():
+        bpo.append(i)
+    assert bpo == our_bsts[4]
