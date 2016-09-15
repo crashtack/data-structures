@@ -1,6 +1,6 @@
 # -*- coding utf-8 -*-
 import random
-from queue import Queue
+from queue_ import Queue
 
 
 class Node(object):

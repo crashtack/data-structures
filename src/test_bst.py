@@ -26,17 +26,18 @@ def straight_bst():
     return bst, 10, -9
 
 FDSA = [
-    ([5, 4, 2, 8, 7, 9], 3, 0),
-    ([4, 9, 3, 5, 5, 8, 6, 2, 4], 5, -2),
-    ([5, 5, 6, 9, 8, 2, 8, 2, 8], 4, -2),
-    ([7, 6, 2, 2, 2, 9, 9, 5, 9], 4, 2),
-    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 4, -2),
+    ([5, 4, 2, 8, 7, 9], 3, 0, [5, 4, 8, 2, 7, 9]),
+    ([4, 9, 3, 5, 5, 8, 6, 2, 4], 5, -2, [4, 3, 9, 2, 5, 8, 6]),
+    ([5, 5, 6, 9, 8, 2, 8, 2, 8], 4, -2, [5, 2, 6, 9, 8]),
+    ([7, 6, 2, 2, 2, 9, 9, 5, 9], 4, 2, [7, 6, 9, 2, 5]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 4, -2, [3, 1, 8, 5, 9, 6]),
     ([-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87,
-        -81, 90, -41, -68, -28], 6, 1),
+        -81, 90, -41, -68, -28], 6, 1, [-14, -43, 48, -98, -35, -10, 94, -71, -41, -28, 35, 75, -87, -64, 73, 90, -81, -68]),
     (['w', 'p', 'R', 'N', 'U', 's', 'q', 'w', 'y', 'i', 'l', 'k', 'N',
-        'O', 'k', 'd', 'v', 'c', 'u'], 7, 6),
-    ([], 0, 0)
+        'O', 'k', 'd', 'v', 'c', 'u'], 7, 6, list('wpyRsNUqvOiudlck')),
+    ([], 0, 0, [])
 ]
+
 
 @pytest.fixture(params=FDSA)
 def our_bsts(request):
@@ -44,8 +45,7 @@ def our_bsts(request):
     bst = BST()
     for item in request.param[0]:
         bst.insert(item)
-    return bst, request.param[1], request.param[2]
-
+    return bst, request.param[1], request.param[2], request.param[3]
 
 
 def test_include():
@@ -130,11 +130,9 @@ def test_coontains_false_2(known_bst):
     assert known_bst[0].contains(15) is False
 
 
-
 def test_depth(known_bst):
     '''check the depth of the left branch'''
     assert known_bst[0].depth() == 3
-
 
 
 def test_depth_empty():
@@ -143,11 +141,9 @@ def test_depth_empty():
     assert bst.depth() == 0
 
 
-
 def test_balance(known_bst):
     '''check the depth of the left branch'''
     assert known_bst[0].balance() == 0
-
 
 
 def test_balance_2(known_bst):
@@ -171,9 +167,10 @@ def test_balance_empty():
     bst = BST()
     assert bst.balance() == 0
 
+
 def test_breath_first_traversal(our_bsts):
     '''test that breadtch first traversal work'''
     bft = []
-    for i in our_bsts.breadth_first_traversal():
+    for i in our_bsts[0].breadth_first_traversal():
         bft.append(i)
-    assert our_bsts.breadth_first_traversal == []
+    assert bft == our_bsts[3]
