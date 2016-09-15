@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/crashtack/data-structures.svg?branch=bst_travers)](https://travis-ci.org/crashtack/data-structures)
 # data-structures
 
 ## Implement a singly-linked list in Python:
