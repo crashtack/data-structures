@@ -45,7 +45,7 @@ def our_bsts(request):
     bst = BST()
     for item in request.param[0]:
         bst.insert(item)
-    return bst, request.param[1], request.param[2], request.param[3], request.param[4]
+    return bst, request.param[1], request.param[2], request.param[3], request.param[4], request.param[0]
 
 
 def test_include():
@@ -182,3 +182,11 @@ def test_pre_order_traversal(our_bsts):
     for i in our_bsts[0].pre_order():
         bpo.append(i)
     assert bpo == our_bsts[4]
+
+
+def test_in_order_traversal(our_bsts):
+    '''test that breadtch first traversal work'''
+    bio = []
+    for i in our_bsts[0].in_order():
+        bio.append(i)
+    assert bio == sorted(our_bsts[5])

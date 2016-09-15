@@ -29,6 +29,17 @@ class Node(object):
                 self.left = nn
             self.depth = max(self.depth, self.left.depth + 1)
 
+    def in_order(self):
+        if self.left:
+            for item in self.left.in_order():
+                yield item
+        yield self.value
+        if self.right:
+            for item in self.right.in_order():
+                yield item
+
+
+
     def get_dot(self):          # pragma: no cover
         """
             Return the tree with root "self" as a dot graph for
@@ -146,7 +157,6 @@ class BST(object):
 
         return self._traverse(add, q.dequeue, q.size)
 
-
     def pre_order(self):
         '''perform a breadth first traversal, returns a list of
            nodes in the graph
@@ -159,6 +169,13 @@ class BST(object):
             s.push(a)
         return self._traverse(add, s.pop, s.size)
 
+    def in_order(self):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        if self.root:
+            return self.root.in_order()
+        else:
+            return []
 
 
 if __name__ == "__main__":          # pragma: no cover
