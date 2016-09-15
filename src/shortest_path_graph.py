@@ -1,6 +1,11 @@
+from stack import Stack
+from queue_ import Queue
+
+
 class Node(object):
 
-    def __init__(self, edges={}):
+    def __init__(self, value, edges={}):
+        self.value = value
         self.edges = edges
         self.distance = float('inf')
         self.visited = False
@@ -33,7 +38,7 @@ class Graph(object):
         self.nodes = {}
         if initial_graph is not None:
             for k in initial_graph.keys():
-                self.nodes.setdefault(k, Node(initial_graph[k]))
+                self.nodes.setdefault(k, Node(k, initial_graph[k]))
 
     def add_nodes(self, id_, edges):
         self.nodes.setdefault(id_, edges)
@@ -47,7 +52,7 @@ class Graph(object):
             curser = remove()
             if curser not in result:
                 result.append(curser)
-                for neighbor in self.graph[curser]:
+                for neighbor in self.nodes[curser].edges:
                     add(neighbor)
         return result
 
@@ -65,12 +70,12 @@ class Graph(object):
         q = Queue()
         return self._traverse(start_node, q.enqueue, q.dequeue, q.size)
 
-
     def dijkstra(self, start, finish):
         '''returns the shortest path from start to finish node'''
-        visited = {self.nodes[start]}
-        not_visited = False
-
-        return []
+        import pdb; pdb.set_trace()
+        visited = [start]
+        not_visited = self.depth_first_traversal(start)
+        not_visited = not_visited[1:]
+        return not_visited
 
 #

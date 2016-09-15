@@ -19,27 +19,33 @@ def initial_graph():
     return g
 
 
+def test_node_init():
+    from shortest_path_graph import Node
+    n = Node(1)
+    assert n.value == 1
+
+
 def test_node_init_no_edges():
     from shortest_path_graph import Node
-    n = Node()
+    n = Node(1)
     assert n.edges == {}
 
 
 def test_node_init_distance():
     from shortest_path_graph import Node
-    n = Node()
+    n = Node(1)
     assert n.distance == float('inf')
 
 
 def test_node_init_no_visited():
     from shortest_path_graph import Node
-    n = Node()
+    n = Node(1)
     assert n.visited is False
 
 
 def test_node_edges():
     from shortest_path_graph import Node
-    n = Node({4: 3, 7: 90, 20: 45})
+    n = Node(1, {4: 3, 7: 90, 20: 45})
     assert n.edges == {4: 3, 7: 90, 20: 45}
 
 
@@ -76,6 +82,14 @@ def test_constructor_with_initial_graph_2_visited(initial_graph):
 
 def test_constructor_with_initial_graph_2_distance(initial_graph):
     assert initial_graph.nodes[2].distance == float('inf')
+
+
+def test_depth_first_travers(initial_graph):
+    assert initial_graph.depth_first_traversal(1) == [1, 3, 2]
+
+
+def test_dijkstra(initial_graph):
+    assert initial_graph.dijkstra(1, 3) == [2, 3]
 
 
 # def test_graph_constructor_none():
