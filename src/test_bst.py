@@ -144,3 +144,10 @@ def test_balance_right2(our_bsts):
 def test_depth_known(our_bsts):
     '''test the depth method'''
     assert our_bsts[0].depth() == our_bsts[1]
+
+def test_breath_first_traversal(our_bsts):
+    '''test that breadtch first traversal work'''
+    bft = []
+    for i in our_bsts.breadth_first_traversal():
+        bft.append(i)
+    assert our_bsts.breadth_first_traversal == []

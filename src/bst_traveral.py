@@ -7,7 +7,7 @@ travarsal(add, remove, nonempty)
 
 class Node(object):
 
-    
+
     def in_order(self):
         for item in self.left.in_order:
             yeild item
