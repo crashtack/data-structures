@@ -41,12 +41,21 @@
  * push(): puts a new value into the heap, maintaining the heap property.
  * pop(): removes the “top” value in the heap, maintaining the heap property.
 
+
+# Implement a priority queue in Python:
+
+ * insert() inserts an item into the queue.
+ * pop() removes the most important item from the queue.
+ * peek(): returns the most important item without removing it from the queue.
+
+# Implement a graph in Python:
+
 ##Implement a graph with weighted edges in Python:
 
 * nodes(): return a list of all nodes in the graph
 * edges(): return a list of all edges in the graph
 * add_node(n): adds a new node ‘n’ to the graph
-* add_edge(n1, n2): adds a new edge to the graph connecting ‘n1’ and ‘n2’, if either n1 or n2 are not already present in the graph, they should be added.
+* add_edge(n1, n2): adds a new edge to the graph connecting ‘n1’ and ‘n2’, if either n1 or n2 are not already present in the graph, they should be added
 * del_node(n): deletes the node ‘n’ from the graph, raises an error if no such node exists
 * del_edge(n1, n2): deletes the edge connecting ‘n1’ and ‘n2’ from the graph, raises an error if no such edge exists
 * has_node(n): True if node ‘n’ is contained in the graph, False if not.
@@ -99,10 +108,41 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 * not dijkstra's algorithem is not currently working
 
 
+<<<<<<< HEAD
 ## Binary Search Tree
 >>>>>>> bst
+=======
+## Binary Search Tree (BST)
+* size: Return the number of nodes in the BST
+* insert(val): Insert a node with the value of val into the BST
+* contains(val): Return True if there exists a node with the value of val in the BST.  Return False if the value is not pressent.
+* depth(): Return the number of levels at the deepest part of the graph.
+* balance(): Returns the difference in the depth of the left side of the graph and the right side of the graph. If the right side of the graph is deeper, this will return a negative number.
+
+* Nodes also have a get_dot method that will output DOT language.
+* This DOT notation can be printed, then in the command line redirected to a file. 
+* From the command line run: dot -Tpng InputFile.dot -o OutputFile.png to create a visual graph.
+
+For testing of the BST we created verious trees with random numbers.  One tree had 20 nodes with 
+values from -100 to 100.  The list that was created was:
+[-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87, -81, 90, -41, -68, -28]
+which looks like:
+
+![Binary Search Tree](/src/5.png)
+
+Additionally we were asked to create best a worst case senarios for the search trees.  
+Best case senario:
+
+![Best case Binary Search Tree](/src/best.png)
+
+Worst case senario:
+
+![Worst case Binary Search Tree](/src/worst.png)
+
+>>>>>>> master
 
 
 ##Dependencies
 * PIP
+* graphviz - for dot graphs
 * Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
