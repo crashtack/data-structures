@@ -102,9 +102,36 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 * not dijkstra's algorithem is not currently working
 
 
-## Binary Search Tree
+## Binary Search Tree (BST)
+* size: Return the number of nodes in the BST
+* insert(val): Insert a node with the value of val into the BST
+* contains(val): Return True if there exists a node with the value of val in the BST.  Return False if the value is not pressent.
+* depth(): Return the number of levels at the deepest part of the graph.
+* balance(): Returns the difference in the depth of the left side of the graph and the right side of the graph. If the right side of the graph is deeper, this will return a negative number.
+
+* Nodes also have a get_dot method that will output DOT language.
+* This DOT notation can be printed, then in the command line redirected to a file. 
+* From the command line run: dot -Tpng InputFile.dot -o OutputFile.png to create a visual graph.
+
+For testing of the BST we created verious trees with random numbers.  One tree had 20 nodes with 
+values from -100 to 100.  The list that was created was:
+[-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87, -81, 90, -41, -68, -28]
+which looks like:
+
+![Binary Search Tree](/src/5.png)
+
+Additionally we were asked to create best a worst case senarios for the search trees.  
+Best case senario:
+
+![Best case Binary Search Tree](/src/best.png)
+
+Worst case senario:
+
+![Worst case Binary Search Tree](/src/worst.png)
+
 
 
 ##Dependencies
 * PIP
+* graphviz - for dot graphs
 * Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
