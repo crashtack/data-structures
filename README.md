@@ -99,20 +99,10 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 
 
 ## Shortest path
-<<<<<<< HEAD
 * dijkstra's algorithem is not currently working
 
 
-## Binary Search Tree ( branch = bst)
-=======
-* not dijkstra's algorithem is not currently working
-
-
-<<<<<<< HEAD
-## Binary Search Tree
->>>>>>> bst
-=======
-## Binary Search Tree (BST)
+# Binary Search Tree (BST)
 * size: Return the number of nodes in the BST
 * insert(val): Insert a node with the value of val into the BST
 * contains(val): Return True if there exists a node with the value of val in the BST.  Return False if the value is not pressent.
@@ -120,10 +110,10 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 * balance(): Returns the difference in the depth of the left side of the graph and the right side of the graph. If the right side of the graph is deeper, this will return a negative number.
 
 * Nodes also have a get_dot method that will output DOT language.
-* This DOT notation can be printed, then in the command line redirected to a file. 
+* This DOT notation can be printed, then in the command line redirected to a file.
 * From the command line run: dot -Tpng InputFile.dot -o OutputFile.png to create a visual graph.
 
-For testing of the BST we created verious trees with random numbers.  One tree had 20 nodes with 
+For testing of the BST we created verious trees with random numbers.  One tree had 20 nodes with
 values from -100 to 100.  The list that was created was:
 [-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87, -81, 90, -41, -68, -28]
 which looks like:
@@ -139,7 +129,11 @@ Worst case senario:
 
 ![Worst case Binary Search Tree](/src/worst.png)
 
->>>>>>> master
+## Binary Search Tree Graph Traversals
+* in_order(self): will return a generator that will return the values in the tree using in-order traversal, one at a time.
+* pre_order(self): will return a generator that will return the values in the tree using pre-order traversal, one at a time.
+* post_order(self): will return a generator that will return the values in the tree using post_order traversal, one at a time.
+* breadth_first(self): will return a generator that will return the values in the tree using breadth-first traversal, one at a time.
 
 
 ##Dependencies
