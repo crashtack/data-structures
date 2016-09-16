@@ -49,9 +49,18 @@ class Node(object):
                 yield item
         yield self.value
 
-
-    def delet_node(self, value):
+    def delet_node(self, target):
         """a function that removes a child node"""
+        # initialization
+        x = root
+        p = None
+        # search
+        while x:
+            if target == x.value:
+                break
+            p = x
+            if x
+
         if self.left.value == value:
             if self.left.left is None and self.left.right is None:
                 self.left = None
@@ -205,6 +214,48 @@ class BST(object):
             return self.root.post_order()
         else:
             return []
+
+    def delet_node(self, target):
+        """a function that removes a child node"""
+        # initialization
+        current = self.root
+        pointer = None
+        # search
+        while current:
+            if target == current.value:
+                break
+            pointer = current
+            if current < target:
+                current = current.right
+            else:
+                current = current.left
+        if current is None:
+            raise ValueError()
+
+        # target has 2 children
+        if current.left in not None and current.right is not None:
+            y = current.left
+            pointer = current
+            while y.right:
+                pointer = y
+                y = y.right
+            current.value = y.value
+            x = y
+
+        # leaf and 1 child cases
+        if pointer is None:  # case where there is only one node
+            if current.left:
+                self.root = current.left
+            else:
+                self.root = current.right
+        if current.left:
+            tmp = current.left
+        else:
+            tmp = current.right
+        if current == pointer.right:
+            pointer.right = tmp
+        else:
+            pointer.left = tmp
 
 
 if __name__ == "__main__":          # pragma: no cover
