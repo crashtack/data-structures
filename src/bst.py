@@ -195,7 +195,7 @@ class BST(object):
         else:
             return []
 
-    def delet_node(self, target):
+    def delete(self, target):
         """a function that removes a child node"""
         # initialization
         current = self.root

@@ -60,7 +60,7 @@ def our_bsts(request):
 
 
 @pytest.fixture(params=DELET)
-def delet_bst(request):
+def delete_bst(request):
     from bst import BST
     bst = BST()
     for item in request.param[0]:
@@ -220,9 +220,9 @@ def test_post_order_traversal(our_bsts):
     assert bpost == our_bsts[6]
 
 
-def test_delet_node(delet_bst):
+def test_delete_node(delete_bst):
     bst = []
-    delet_bst[0].delet_node(delet_bst[1])
-    for i in delet_bst[0].breadth_first_traversal():
+    delete_bst[0].delete(delete_bst[1])
+    for i in delete_bst[0].breadth_first_traversal():
         bst.append(i)
-    assert bst == delet_bst[2]
+    assert bst == delete_bst[2]
