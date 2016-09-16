@@ -139,6 +139,8 @@ Worst case senario:
 
 ## Binary Search Tree Graph Delete Node
 * delete(self, val): remove val from the tree if present, if not present this method is a no-op. Return None in all cases.
+### Appreciation
+*https://www.youtube.com/watch?v=3TOl3Fv4394
 
 ##Dependencies
 * see requirements.txt
