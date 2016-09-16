@@ -50,27 +50,6 @@ class Node(object):
                 yield item
         yield self.value
 
-    # def delet_node(self, target):
-    #     """a function that removes a child node"""
-    #     # initialization
-    #     x = root
-    #     p = None
-    #     # search
-    #     while x:
-    #         if target == x.value:
-    #             break
-    #         p = x
-    #         if x
-    #
-    #     if self.left.value == value:
-    #         if self.left.left is None and self.left.right is None:
-    #             self.left = None
-    #         elif self.right is None:
-    #             self.value = self.left.value
-
-
-
-
     def get_dot(self):          # pragma: no cover
         """
             Return the tree with root "self" as a dot graph for
@@ -221,6 +200,7 @@ class BST(object):
         # initialization
         current = self.root
         pointer = None
+
         # search
         while current:
             if target == current.value:
@@ -231,7 +211,7 @@ class BST(object):
             else:
                 current = current.left
         if current is None:
-            raise ValueError()
+            return
 
         # target has 2 children
         if current.left is not None and current.right is not None:
