@@ -3,6 +3,7 @@ import random
 from queue_ import Queue
 from stack import Stack
 
+
 class Node(object):
     """Implement a Node class with value, left and right."""
 
@@ -49,23 +50,23 @@ class Node(object):
                 yield item
         yield self.value
 
-    def delet_node(self, target):
-        """a function that removes a child node"""
-        # initialization
-        x = root
-        p = None
-        # search
-        while x:
-            if target == x.value:
-                break
-            p = x
-            if x
-
-        if self.left.value == value:
-            if self.left.left is None and self.left.right is None:
-                self.left = None
-            elif self.right is None:
-                self.value = self.left.value
+    # def delet_node(self, target):
+    #     """a function that removes a child node"""
+    #     # initialization
+    #     x = root
+    #     p = None
+    #     # search
+    #     while x:
+    #         if target == x.value:
+    #             break
+    #         p = x
+    #         if x
+    #
+    #     if self.left.value == value:
+    #         if self.left.left is None and self.left.right is None:
+    #             self.left = None
+    #         elif self.right is None:
+    #             self.value = self.left.value
 
 
 
@@ -225,7 +226,7 @@ class BST(object):
             if target == current.value:
                 break
             pointer = current
-            if current < target:
+            if current.value < target:
                 current = current.right
             else:
                 current = current.left
@@ -233,14 +234,14 @@ class BST(object):
             raise ValueError()
 
         # target has 2 children
-        if current.left in not None and current.right is not None:
+        if current.left is not None and current.right is not None:
             y = current.left
             pointer = current
             while y.right:
                 pointer = y
                 y = y.right
             current.value = y.value
-            x = y
+            current = y
 
         # leaf and 1 child cases
         if pointer is None:  # case where there is only one node

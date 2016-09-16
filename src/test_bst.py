@@ -39,6 +39,16 @@ FDSA = [
 ]
 
 
+DELET = [
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 1, [3, 8, 5, 9, 6]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 6, [3, 1, 8, 5, 9]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 5, [3, 1, 8, 6, 9]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 9, [3, 1, 8, 5, 6]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 8, [3, 1, 6, 5, 9]),
+    ([3, 1, 8, 5, 1, 6, 3, 9, 3], 3, [1, 8, 5, 9, 6]),
+]
+
+
 @pytest.fixture(params=FDSA)
 def our_bsts(request):
     from bst import BST
@@ -46,6 +56,15 @@ def our_bsts(request):
     for item in request.param[0]:
         bst.insert(item)
     return bst, request.param[1], request.param[2], request.param[3], request.param[4], request.param[0], request.param[5]
+
+
+@pytest.fixture(params=DELET)
+def delet_bst(request):
+    from bst import BST
+    bst = BST()
+    for item in request.param[0]:
+        bst.insert(item)
+    return bst, request.param[1], request.param[2]
 
 
 def test_include():
@@ -198,3 +217,11 @@ def test_post_order_traversal(our_bsts):
     for i in our_bsts[0].post_order():
         bpost.append(i)
     assert bpost == our_bsts[6]
+
+
+def test_delet_node(delet_bst):
+    bst = []
+    delet_bst[0].delet_node(delet_bst[1])
+    for i in delet_bst[0].breadth_first_traversal():
+        bst.append(i)
+    assert bst == delet_bst[2]
