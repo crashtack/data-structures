@@ -49,6 +49,18 @@ class Node(object):
                 yield item
         yield self.value
 
+
+    def delet_node(self, value):
+        """a function that removes a child node"""
+        if self.left.value == value:
+            if self.left.left is None and self.left.right is None:
+                self.left = None
+            elif self.right is None:
+                self.value = self.left.value
+
+
+
+
     def get_dot(self):          # pragma: no cover
         """
             Return the tree with root "self" as a dot graph for
