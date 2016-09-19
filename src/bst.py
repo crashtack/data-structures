@@ -15,6 +15,26 @@ class Node(object):
         self.right = right
         self.depth = 1  # i added this during lecture
 
+        self._left = left
+        self._right = right
+
+    @property
+    def left(self):
+        return self._left
+
+    @left.setter
+    def left(self, node):
+        self._left = node
+        node._parent = self
+
+    @left.deleter
+    def left(self):
+        self._left = None
+
+    @property
+    def parent(self, node):
+        return self._parent
+
     def insert(self, nn):   # nn =  new_node
         """Insert a node in the correct place."""
         if nn.value > self.value:
