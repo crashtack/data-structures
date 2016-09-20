@@ -39,7 +39,6 @@ class Node(object):
         except AttributeError:
             pass
 
-
     def insert(self, nn):   # nn =  new_node
         """Insert a node in the correct place."""
         if nn.value > self.value:
@@ -48,6 +47,13 @@ class Node(object):
             else:
                 self.right = nn
             self._depth = max(self._depth, self.right._depth + 1)
+
+            if self.balance() <= -2 and self.right.balance() < 0:
+                self.right.pivot_left()
+            if self.balance() <= -2 and self.right.balance() > 0:
+                self.right.pivot_right()
+                self.right.pivot_left()
+
         elif nn.value < self.value:
             if self.left:
                 self.left.insert(nn)
@@ -55,31 +61,35 @@ class Node(object):
                 self.left = nn
             self._depth = max(self._depth, self.left._depth + 1)
 
+            if self.balance() >= 2 and self.left.balance() > 0:
+                self.left.pivot_right()
+            if self.balance() >= 2 and self.left.balance() < 0:
+                self.left.pivot_left()
+                self.left.pivot_right()
+
+
     @property
     def depth(self):
         try:
-            left = self.left._depth
-        except AttributeError:
-            left = 0
-        try:
-            right = self.right._depth
-        except AttributeError:
-            right = 0
-
-            return max(left, right) + 1
-
-
-    def balance(self):
-        try:
-            left_depth = self.left.depth
+            left_depth = self.left._depth
         except AttributeError:
             left_depth = 0
         try:
-            right_depth = self.right.depth
+            right_depth = self.right._depth
         except AttributeError:
             right_depth = 0
-        return left_depth - right_depth
 
+        return max(left_depth, right_depth) + 1
+
+    def balance(self):
+        if self.left and self.right:
+            return self.left.depth - self.right.depth
+        elif self.left is None:
+            return self.right.depth
+        elif self.right is None:
+            return self.left.depth
+        else:
+            return 0
 
     def in_order(self):
         '''recursive in order traversal'''
@@ -107,19 +117,51 @@ class Node(object):
         temp = pivot.parent
         sib = pivot.right
         _root = False
-
+        # import pdb; pdb.set_trace()
         if temp.parent and temp.parent < temp:
             temp.parent.right = pivot
         elif temp.parent:
             temp.parent.left = pivot
         else:
             _root = True
-
         pivot.right = temp
         temp.left = sib
-        pivot.right.depth()
+
+        if temp.right:
+            temp._depth = max(temp.right.depth, temp.left.depth) + 1
+        elif temp.left:
+            temp._depth = temp.left.depth + 1
+        else:
+            temp._depth = 1
+
+        pivot._depth = max(pivot.right.depth, pivot.left.depth) + 1
         return _root
 
+    def pivot_left(self):
+        """Perform a left rotation on the node."""
+        pivot = self
+        temp = pivot.parent
+        sib = pivot.left
+        _root = False
+
+        if temp.parent and temp.parent < temp:
+            temp.parent.left = pivot
+        elif temp.parent:
+            temp.parent.right = pivot
+        else:
+            _root = True
+        pivot.left = temp
+        temp.right = sib
+
+        if temp.left:
+            temp._depth = max(temp.left.depth, temp.right.depth) + 1
+        elif temp.right:
+            temp._depth = temp.right.depth + 1
+        else:
+            temp._depth = 1
+
+        pivot._depth = max(pivot.left.depth, pivot.right.depth) + 1
+        return _root
 
     def get_dot(self):          # pragma: no cover
         """
@@ -170,7 +212,9 @@ class BST(object):
         if self.root is None:
             self.root = new_node
         else:
-            self.root.insert(new_node)
+            perform_insert = self.root.insert(new_node)
+            if perform_insert:
+                self.root = perform_insert
 
         self.size += 1
 
@@ -208,17 +252,6 @@ class BST(object):
             return 0
         else:
             return self.root.balance()
-        # try:
-        #     depth_left = self.root.left.depth
-        # except AttributeError:
-        #     depth_left = 0
-
-        # try:
-        #     depth_right = self.root.right.depth
-        # except AttributeError:
-        #     depth_right = 0
-
-        # return depth_left - depth_right
 
     def _traverse(self, add, remove, size):
         '''Traverse function
