@@ -226,3 +226,28 @@ def test_delete_node(delete_bst):
     for i in delete_bst[0].breadth_first_traversal():
         bst.append(i)
     assert bst == delete_bst[2]
+
+def test_right_rotation():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(1)
+    bst.root.left.pivot_right()
+    assert bst.root.left is None
+
+def test_right_rotation2():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(1)
+    bst.root.left.pivot_right()
+    assert bst.root.parent.value == 3
+
+def test_right_rotation3():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(1)
+    bst.root.left.pivot_right()
+    assert bst.root.parent.left.value == 1
+

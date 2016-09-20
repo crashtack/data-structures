@@ -7,13 +7,38 @@ from stack import Stack
 class Node(object):
     """Implement a Node class with value, left and right."""
 
-    def __init__(self, key=None, value=None, left=None, right=None):
+    def __init__(self, value=None, left=None, right=None, parent=None):
         """The Node initializer with a key, value, left and right child."""
-        self.key = key
         self.value = value
-        self.left = left
-        self.right = right
-        self.depth = 1  # i added this during lecture
+        self._left = left
+        self._right = right
+        self.parent = parent
+        self._depth = 1  # i added this during lecture
+
+    @property
+    def left(self):
+        return self._left
+
+    @left.setter
+    def left(self, node):
+        self._left = node
+        try:
+            node.parent = self
+        except AttributeError:
+            pass
+
+    @property
+    def right(self):
+        return self._right
+
+    @right.setter
+    def right(self, node):
+        self._right = node
+        try:
+            node.parent = self
+        except AttributeError:
+            pass
+
 
     def insert(self, nn):   # nn =  new_node
         """Insert a node in the correct place."""
@@ -22,13 +47,39 @@ class Node(object):
                 self.right.insert(nn)
             else:
                 self.right = nn
-            self.depth = max(self.depth, self.right.depth + 1)
+            self._depth = max(self._depth, self.right._depth + 1)
         elif nn.value < self.value:
             if self.left:
                 self.left.insert(nn)
             else:
                 self.left = nn
-            self.depth = max(self.depth, self.left.depth + 1)
+            self._depth = max(self._depth, self.left._depth + 1)
+
+    @property
+    def depth(self):
+        try:
+            left = self.left._depth
+        except AttributeError:
+            left = 0
+        try:
+            right = self.right._depth
+        except AttributeError:
+            right = 0
+
+            return max(left, right) + 1
+
+
+    def balance(self):
+        try:
+            left_depth = self.left.depth
+        except AttributeError:
+            left_depth = 0
+        try:
+            right_depth = self.right.depth
+        except AttributeError:
+            right_depth = 0
+        return left_depth - right_depth
+
 
     def in_order(self):
         '''recursive in order traversal'''
@@ -49,6 +100,26 @@ class Node(object):
             for item in self.right.post_order():
                 yield item
         yield self.value
+
+    def pivot_right(self):
+        """Perform a right rotation on the node."""
+        pivot = self
+        temp = pivot.parent
+        sib = pivot.right
+        _root = False
+
+        if temp.parent and temp.parent < temp:
+            temp.parent.right = pivot
+        elif temp.parent:
+            temp.parent.left = pivot
+        else:
+            _root = True
+
+        pivot.right = temp
+        temp.left = sib
+        pivot.right.depth()
+        return _root
+
 
     def get_dot(self):          # pragma: no cover
         """
@@ -133,17 +204,21 @@ class BST(object):
             half of the Tree. greater depth on the left returns a positive
             value.
         """
-        try:
-            depth_left = self.root.left.depth
-        except AttributeError:
-            depth_left = 0
+        if self.root is None:
+            return 0
+        else:
+            return self.root.balance()
+        # try:
+        #     depth_left = self.root.left.depth
+        # except AttributeError:
+        #     depth_left = 0
 
-        try:
-            depth_right = self.root.right.depth
-        except AttributeError:
-            depth_right = 0
+        # try:
+        #     depth_right = self.root.right.depth
+        # except AttributeError:
+        #     depth_right = 0
 
-        return depth_left - depth_right
+        # return depth_left - depth_right
 
     def _traverse(self, add, remove, size):
         '''Traverse function
