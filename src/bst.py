@@ -48,11 +48,11 @@ class Node(object):
                 self.right = nn
             self._depth = max(self._depth, self.right._depth + 1)
 
-            if self.balance() <= -2 and self.right.balance() < 0:
-                self.right.pivot_left()
-            if self.balance() <= -2 and self.right.balance() > 0:
-                self.right.pivot_right()
-                self.right.pivot_left()
+            # if self.balance() <= -2 and self.right.balance() < 0:
+                # self.right.pivot_left()
+            # if self.balance() <= -2 and self.right.balance() > 0:
+                # self.right.pivot_right()
+                # self.right.pivot_left()
 
         elif nn.value < self.value:
             if self.left:
@@ -61,11 +61,11 @@ class Node(object):
                 self.left = nn
             self._depth = max(self._depth, self.left._depth + 1)
 
-            if self.balance() >= 2 and self.left.balance() > 0:
-                self.left.pivot_right()
-            if self.balance() >= 2 and self.left.balance() < 0:
-                self.left.pivot_left()
-                self.left.pivot_right()
+            # if self.balance() >= 2 and self.left.balance() > 0:
+                # self.left.pivot_right()
+            # if self.balance() >= 2 and self.left.balance() < 0:
+                # self.left.pivot_left()
+                # self.left.pivot_right()
 
 
     @property
@@ -82,14 +82,14 @@ class Node(object):
         return max(left_depth, right_depth) + 1
 
     def balance(self):
-        if self.left and self.right:
-            return self.left.depth - self.right.depth
+        if self.left is None and self.right is None:
+            return 0
         elif self.left is None:
-            return self.right.depth
+            return -self.right.depth
         elif self.right is None:
             return self.left.depth
         else:
-            return 0
+            return self.left.depth - self.right.depth
 
     def in_order(self):
         '''recursive in order traversal'''
@@ -112,6 +112,7 @@ class Node(object):
         yield self.value
 
     def pivot_right(self):
+        pass
         """Perform a right rotation on the node."""
         pivot = self
         temp = pivot.parent
@@ -138,6 +139,7 @@ class Node(object):
         return _root
 
     def pivot_left(self):
+        pass
         """Perform a left rotation on the node."""
         pivot = self
         temp = pivot.parent
