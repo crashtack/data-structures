@@ -38,7 +38,7 @@ def test_sort_two_items_reverse():
 
 
 def test_sort_multi_items_reverse():
-    """Test to see if inputed a string of two items that the list is sorted."""
+    """Test to see if inputed a string of a few items that the list is sorted."""
     from insert import insert
     my_list = [5, 2, 3, 7]
     assert insert(my_list) == sorted(my_list)
