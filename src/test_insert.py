@@ -1,5 +1,6 @@
 # -*- coding utf-8 -*-
 import pytest
+import random
 
 def test_include():
     """test to see if insert can be included"""
@@ -37,10 +38,18 @@ def test_sort_two_items_reverse():
     assert insert(my_list) == sorted(my_list)
 
 
-def test_sort_multi_items_reverse():
+def test_sort_multi_items():
     """Test to see if inputed a string of a few items that the list is sorted."""
     from insert import insert
     my_list = [5, 2, 3, 7]
     assert insert(my_list) == sorted(my_list)
+
+
+def test_sort_multi_items_2():
+    """Test to see if inputed a string of a few items that the list is sorted."""
+    from insert import insert
+    my_list = [random.randint(0, 100) for i in range(100)]
+    assert insert(my_list) == sorted(my_list)
+
 
 
