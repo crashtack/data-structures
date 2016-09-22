@@ -1,7 +1,6 @@
 # -*- coding utf-8 -*-
 """Test suite for Binary Search Tree."""
 import pytest
-import random
 from bst import BST, Node
 
 
@@ -9,20 +8,21 @@ from bst import BST, Node
 def known_bst():
     """Test fixture for a binary search tree."""
     bst = BST()
-    bst.insert(5)
-    bst.insert(4)
-    bst.insert(2)
-    bst.insert(8)
-    bst.insert(7)
-    bst.insert(9)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(4)
+    bst.insert_non_balance(2)
+    bst.insert_non_balance(8)
+    bst.insert_non_balance(7)
+    bst.insert_non_balance(9)
     return bst, 3, 0
+
 
 @pytest.fixture
 def straight_bst():
     """Test fixture for a binary search tree."""
     bst = BST()
     for i in range(1, 10):
-        bst.insert(i)
+        bst.insert_non_balance(i)
     return bst, 10, -9
 
 FDSA = [
@@ -55,8 +55,10 @@ def our_bsts(request):
     from bst import BST
     bst = BST()
     for item in request.param[0]:
-        bst.insert(item)
-    return bst, request.param[1], request.param[2], request.param[3], request.param[4], request.param[0], request.param[5]
+        bst.insert_non_balance(item)
+    return bst, request.param[1], request.param[2],\
+        request.param[3], request.param[4], request.param[0],\
+        request.param[5]
 
 
 @pytest.fixture(params=DELET)
@@ -64,7 +66,7 @@ def delete_bst(request):
     from bst import BST
     bst = BST()
     for item in request.param[0]:
-        bst.insert(item)
+        bst.insert_non_balance(item)
     return bst, request.param[1], request.param[2]
 
 
@@ -89,49 +91,49 @@ def test_init_root():
     assert bst.root is None
 
 
-def test_insert_size():
-    """Test size increments on insert."""
+def test_insert_non_balance_size():
+    """Test size increments on insert_non_balance."""
     from bst import BST
     bst = BST()
-    bst.insert(1)
+    bst.insert_non_balance(1)
     assert bst.size == 1
 
 
-def test_insert_value():
-    """Test that an inserted node has correct value."""
+def test_insert_non_balance_value():
+    """Test that an insert_non_balanceed node has correct value."""
     from bst import BST
     bst = BST()
-    bst.insert(4)
-    bst.insert(2)
+    bst.insert_non_balance(4)
+    bst.insert_non_balance(2)
     assert bst.root.left.value == 2
 
 
-def test_insert_right_node_None():
-    """Test to see if inserted node does not change other node."""
+def test_insert_non_balance_right_node_None():
+    """Test to see if insert_non_balanceed node does not change other node."""
     from bst import BST
     bst = BST()
-    bst.insert(4)
-    bst.insert(2)
+    bst.insert_non_balance(4)
+    bst.insert_non_balance(2)
     assert bst.root.right is None
 
 
-def test_insert_second_depth_level():
-    """Test to see if inserted node goes to the correct place."""
+def test_insert_non_balance_second_depth_level():
+    """Test to see if insert_non_balanceed node goes to the correct place."""
     from bst import BST
     bst = BST()
-    bst.insert(4)
-    bst.insert(2)
-    bst.insert(3)
+    bst.insert_non_balance(4)
+    bst.insert_non_balance(2)
+    bst.insert_non_balance(3)
     assert bst.root.left.right.value == 3
 
 
-def test_insert_check_size():
-    """Check to see if size is correct after several inserts."""
+def test_insert_non_balance_check_size():
+    """Check to see if size is correct after several insert_non_balances."""
     from bst import BST
     bst = BST()
-    bst.insert(4)
-    bst.insert(2)
-    bst.insert(3)
+    bst.insert_non_balance(4)
+    bst.insert_non_balance(2)
+    bst.insert_non_balance(3)
     assert bst.size == 3
 
 
@@ -168,7 +170,7 @@ def test_balance_known_tree(known_bst):
 
 def test_balance_known_tree_2(known_bst):
     """check the depth of the left branch"""
-    known_bst[0].insert(12)
+    known_bst[0].insert_non_balance(12)
     assert known_bst[0].balance() == known_bst[2] - 1
 
 
@@ -230,54 +232,54 @@ def test_delete_node(delete_bst):
 
 def test_right_rotation():
     bst = BST()
-    bst.insert(5)
-    bst.insert(3)
-    bst.insert(1)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(3)
+    bst.insert_non_balance(1)
     bst.root.left.pivot_right()
     assert bst.root.left is None
 
 
 def test_right_rotation2():
     bst = BST()
-    bst.insert(5)
-    bst.insert(3)
-    bst.insert(1)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(3)
+    bst.insert_non_balance(1)
     bst.root.left.pivot_right()
     assert bst.root.parent.value == 3
 
 
 def test_right_rotation3():
     bst = BST()
-    bst.insert(5)
-    bst.insert(3)
-    bst.insert(1)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(3)
+    bst.insert_non_balance(1)
     bst.root.left.pivot_right()
     assert bst.root.parent.left.value == 1
 
 
 def test_left_rotation():
     bst = BST()
-    bst.insert(5)
-    bst.insert(7)
-    bst.insert(10)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(7)
+    bst.insert_non_balance(10)
     bst.root.right.pivot_left()
     assert bst.root.left is None
 
 
 def test_left_rotation2():
     bst = BST()
-    bst.insert(5)
-    bst.insert(7)
-    bst.insert(10)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(7)
+    bst.insert_non_balance(10)
     bst.root.right.pivot_left()
     assert bst.root.parent.value is 7
 
 
 def test_left_rotation3():
     bst = BST()
-    bst.insert(5)
-    bst.insert(7)
-    bst.insert(10)
+    bst.insert_non_balance(5)
+    bst.insert_non_balance(7)
+    bst.insert_non_balance(10)
     bst.root.right.pivot_left()
     assert bst.root.parent.right.value is 10
 
@@ -304,5 +306,3 @@ def test_balance_node_both():
     this_node.left = Node(5)
     this_node.right = Node(15)
     assert this_node.balance() == 0
-
-

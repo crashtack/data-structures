@@ -7,13 +7,26 @@ from stack import Stack
 class Node(object):
     """Implement a Node class with value, left and right."""
 
-    def __init__(self, value=None, left=None, right=None, parent=None):
+    def __init__(self, value=None, left=None, right=None, parent=None, _depth=1):
         """The Node initializer with a key, value, left and right child."""
         self.value = value
         self._left = left
         self._right = right
         self.parent = parent
-        self._depth = 1  # i added this during lecture
+        self._depth = _depth  # i added this during lecture
+        self._root = False
+
+    def __gt__(self, other):
+        if self.value > other.value:
+            return True
+        else:
+            return False
+
+    def __lt__(self, other):
+        if self.value < other.value:
+            return True
+        else:
+            return False
 
     @property
     def left(self):
@@ -39,26 +52,25 @@ class Node(object):
         except AttributeError:
             pass
 
-
-    def insert(self, nn):   # nn =  new_node
+    def insert_non_balance(self, nn):   # nn =  new_node
         """Insert a node in the correct place."""
         if nn.value > self.value:
             if self.right:
-                self.right.insert(nn)
+                self.right.insert_non_balance(nn)
             else:
                 self.right = nn
             self._depth = max(self._depth, self.right._depth + 1)
 
         elif nn.value < self.value:
             if self.left:
-                self.left.insert(nn)
+                self.left.insert_non_balance(nn)
             else:
                 self.left = nn
             self._depth = max(self._depth, self.left._depth + 1)
 
-
-    def insert_and_balance(self, nn):   # nn =  new_node
+    def insert(self, nn):   # nn =  new_node
         """Insert a node in the correct place. Rebalnce the tree"""
+
         if nn.value > self.value:
             if self.right:
                 self.right.insert(nn)
@@ -85,7 +97,6 @@ class Node(object):
                 self.left.pivot_left()
                 self.left.pivot_right()
 
-
     @property
     def depth(self):
         try:
@@ -110,7 +121,6 @@ class Node(object):
             right_depth = 0
 
         return left_depth - right_depth
-
 
     def in_order(self):
         '''recursive in order traversal'''
@@ -138,27 +148,23 @@ class Node(object):
         pivot = self
         temp = pivot.parent
         sib = pivot.right
-        _root = False
-        # import pdb; pdb.set_trace()
+
         if temp.parent and temp.parent < temp:
-            temp.parent.right = pivot
-        elif temp.parent:
             temp.parent.left = pivot
+        elif temp.parent:
+            temp.parent.right = pivot
         else:
-            _root = True
+            self._root = True
         pivot.right = temp
         temp.left = sib
 
         if temp.right:
-            temp._depth = max(temp.right.depth, temp.left.depth) + 1
-        elif temp.left:
-            temp._depth = temp.left.depth + 1
+            temp._depth = temp.right.depth + 1
         else:
             temp._depth = 1
 
         pivot._depth = max(pivot.right.depth, pivot.left.depth) + 1
-        return _root
-
+        pivot.parent = temp.parent
 
     def pivot_left(self):
         pass
@@ -166,26 +172,23 @@ class Node(object):
         pivot = self
         temp = pivot.parent
         sib = pivot.left
-        _root = False
 
         if temp.parent and temp.parent < temp:
-            temp.parent.left = pivot
-        elif temp.parent:
             temp.parent.right = pivot
+        elif temp.parent:
+            temp.parent.left = pivot
         else:
-            _root = True
+            self._root = True
         pivot.left = temp
         temp.right = sib
 
         if temp.left:
-            temp._depth = max(temp.left.depth, temp.right.depth) + 1
-        elif temp.right:
-            temp._depth = temp.right.depth + 1
+            temp._depth = temp.left.depth + 1
         else:
             temp._depth = 1
 
         pivot._depth = max(pivot.left.depth, pivot.right.depth) + 1
-        return _root
+        pivot.parent = temp.parent
 
     def get_dot(self):          # pragma: no cover
         """
@@ -232,14 +235,24 @@ class BST(object):
     def insert(self, val):
         """Insert a node with with value=val."""
         new_node = Node(value=val)
+        if self.root is None:
+            self.root = new_node
+            self.root._root = True
+        else:
+            self.root.insert(new_node)
+            if self.root.parent:
+                self.root = self.root.parent
+        self.size += 1
 
+    def insert_non_balance(self, val):
+        """Insert a node with with value=val."""
+        new_node = Node(value=val)
         if self.root is None:
             self.root = new_node
         else:
-            perform_insert = self.root.insert(new_node)
+            perform_insert = self.root.insert_non_balance(new_node)
             if perform_insert:
                 self.root = perform_insert
-
         self.size += 1
 
     def contains(self, val):
