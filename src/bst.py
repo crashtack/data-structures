@@ -39,6 +39,7 @@ class Node(object):
         except AttributeError:
             pass
 
+
     def insert(self, nn):   # nn =  new_node
         """Insert a node in the correct place."""
         if nn.value > self.value:
@@ -48,11 +49,28 @@ class Node(object):
                 self.right = nn
             self._depth = max(self._depth, self.right._depth + 1)
 
-            # if self.balance() <= -2 and self.right.balance() < 0:
-                # self.right.pivot_left()
-            # if self.balance() <= -2 and self.right.balance() > 0:
-                # self.right.pivot_right()
-                # self.right.pivot_left()
+        elif nn.value < self.value:
+            if self.left:
+                self.left.insert(nn)
+            else:
+                self.left = nn
+            self._depth = max(self._depth, self.left._depth + 1)
+
+
+    def insert_and_balance(self, nn):   # nn =  new_node
+        """Insert a node in the correct place. Rebalnce the tree"""
+        if nn.value > self.value:
+            if self.right:
+                self.right.insert(nn)
+            else:
+                self.right = nn
+            self._depth = max(self._depth, self.right._depth + 1)
+
+            if self.balance() <= -2 and self.right.balance() < 0:
+                self.right.pivot_left()
+            if self.balance() <= -2 and self.right.balance() > 0:
+                self.right.pivot_right()
+                self.right.pivot_left()
 
         elif nn.value < self.value:
             if self.left:
@@ -61,11 +79,11 @@ class Node(object):
                 self.left = nn
             self._depth = max(self._depth, self.left._depth + 1)
 
-            # if self.balance() >= 2 and self.left.balance() > 0:
-                # self.left.pivot_right()
-            # if self.balance() >= 2 and self.left.balance() < 0:
-                # self.left.pivot_left()
-                # self.left.pivot_right()
+            if self.balance() >= 2 and self.left.balance() > 0:
+                self.left.pivot_right()
+            if self.balance() >= 2 and self.left.balance() < 0:
+                self.left.pivot_left()
+                self.left.pivot_right()
 
 
     @property
@@ -82,14 +100,17 @@ class Node(object):
         return max(left_depth, right_depth) + 1
 
     def balance(self):
-        if self.left is None and self.right is None:
-            return 0
-        elif self.left is None:
-            return -self.right.depth
-        elif self.right is None:
-            return self.left.depth
-        else:
-            return self.left.depth - self.right.depth
+        try:
+            left_depth = self.left._depth
+        except AttributeError:
+            left_depth = 0
+        try:
+            right_depth = self.right._depth
+        except AttributeError:
+            right_depth = 0
+
+        return left_depth - right_depth
+
 
     def in_order(self):
         '''recursive in order traversal'''
@@ -137,6 +158,7 @@ class Node(object):
 
         pivot._depth = max(pivot.right.depth, pivot.left.depth) + 1
         return _root
+
 
     def pivot_left(self):
         pass

@@ -228,58 +228,58 @@ def test_delete_node(delete_bst):
     assert bst == delete_bst[2]
 
 
-# def test_right_rotation():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(3)
-#     bst.insert(1)
-#     bst.root.left.pivot_right()
-#     assert bst.root.left is None
+def test_right_rotation():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(1)
+    bst.root.left.pivot_right()
+    assert bst.root.left is None
 
 
-# def test_right_rotation2():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(3)
-#     bst.insert(1)
-#     bst.root.left.pivot_right()
-#     assert bst.root.parent.value == 3
+def test_right_rotation2():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(1)
+    bst.root.left.pivot_right()
+    assert bst.root.parent.value == 3
 
 
-# def test_right_rotation3():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(3)
-#     bst.insert(1)
-#     bst.root.left.pivot_right()
-#     assert bst.root.parent.left.value == 1
+def test_right_rotation3():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(1)
+    bst.root.left.pivot_right()
+    assert bst.root.parent.left.value == 1
 
 
-# def test_left_rotation():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(7)
-#     bst.insert(10)
-#     bst.root.right.pivot_left()
-#     assert bst.root.left is None
+def test_left_rotation():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(10)
+    bst.root.right.pivot_left()
+    assert bst.root.left is None
 
 
-# def test_left_rotation2():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(7)
-#     bst.insert(10)
-#     bst.root.right.pivot_left()
-#     assert bst.root.parent.value is 7
+def test_left_rotation2():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(10)
+    bst.root.right.pivot_left()
+    assert bst.root.parent.value is 7
 
 
-# def test_left_rotation3():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(7)
-#     bst.insert(10)
-#     bst.root.right.pivot_left()
-#     assert bst.root.value is 7
+def test_left_rotation3():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(10)
+    bst.root.right.pivot_left()
+    assert bst.root.parent.right.value is 10
 
 
 def test_balance_node():
