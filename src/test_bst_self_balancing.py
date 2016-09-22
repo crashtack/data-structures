@@ -117,7 +117,16 @@ def test_left_rotation3():
     assert bst.root.parent.right.value is 10
 
 
-def test_left_balance():
+def test_pivot_left_root_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(10)
+    # bst.root.right.pivot_left()
+    assert bst.root.value is 7
+
+
+def test_pivot_left_left_value():
     bst = BST()
     bst.insert(5)
     bst.insert(7)
@@ -126,10 +135,107 @@ def test_left_balance():
     assert bst.root.left.value is 5
 
 
-def test_left_balance_depth():
+def test_pivot_left_right_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(10)
+    # bst.root.right.pivot_left()
+    assert bst.root.right.value is 10
+
+
+def test_pivot_left_depth():
     bst = BST()
     bst.insert(5)
     bst.insert(7)
     bst.insert(10)
     # bst.root.right.pivot_left()
     assert bst.depth() == 2
+
+
+def test_pivot_left_balance():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(10)
+    assert bst.balance() == 0
+
+
+def test_pivot_right_root_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(2)
+    assert bst.root.value is 3
+
+
+def test_pivot_right_left_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(2)
+    assert bst.root.left.value is 2
+
+
+def test_pivot_right_right_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(2)
+    assert bst.root.right.value is 5
+
+
+def test_pivot_right_depth():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(2)
+    assert bst.depth() == 2
+
+
+def test_pivot_right_balance():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(2)
+    assert bst.balance() == 0
+
+
+def test_pivot_rl_root_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.root.value is 6
+
+
+def test_pivot_rl_left_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.root.left.value is 5
+
+
+def test_pivot_rl_right_value():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.root.right.value is 7
+
+
+def test_pivot_right_depth():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.depth() == 2
+
+
+def test_pivot_right_balance():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.balance() == 0

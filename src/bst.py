@@ -14,7 +14,6 @@ class Node(object):
         self._right = right
         self.parent = parent
         self._depth = _depth  # i added this during lecture
-        self._root = False
 
     def __gt__(self, other):
         if self.value > other.value:
@@ -153,8 +152,8 @@ class Node(object):
             temp.parent.left = pivot
         elif temp.parent:
             temp.parent.right = pivot
-        else:
-            self._root = True
+        # else:
+        #     self._root = True
         pivot.right = temp
         temp.left = sib
 
@@ -177,8 +176,8 @@ class Node(object):
             temp.parent.right = pivot
         elif temp.parent:
             temp.parent.left = pivot
-        else:
-            self._root = True
+        # else:
+        #     self._root = True
         pivot.left = temp
         temp.right = sib
 
@@ -237,7 +236,6 @@ class BST(object):
         new_node = Node(value=val)
         if self.root is None:
             self.root = new_node
-            self.root._root = True
         else:
             self.root.insert(new_node)
             if self.root.parent:
