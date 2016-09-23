@@ -1,0 +1,10 @@
+> /Users/Zach/code/py401/data-structures/src/bst.py(86)insert()
+-> self.right.pivot_right()
+(Pdb) --KeyboardInterrupt--
+(Pdb) (Pdb) (Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) (Pdb) 

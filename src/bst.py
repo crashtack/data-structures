@@ -80,8 +80,8 @@ class Node(object):
             if self.balance() <= -2 and self.right.balance() < 0:
                 self.right.pivot_left()
             if self.balance() <= -2 and self.right.balance() > 0:
-                self.right.pivot_right()
-                self.right.pivot_left()
+
+                self.right.pivot_rl()
 
         elif nn.value < self.value:
             if self.left:
@@ -93,8 +93,8 @@ class Node(object):
             if self.balance() >= 2 and self.left.balance() > 0:
                 self.left.pivot_right()
             if self.balance() >= 2 and self.left.balance() < 0:
-                self.left.pivot_left()
-                self.left.pivot_right()
+                
+                self.left.pivot_lr()
 
     @property
     def depth(self):
@@ -142,7 +142,6 @@ class Node(object):
         yield self.value
 
     def pivot_right(self):
-        pass
         """Perform a right rotation on the node."""
         pivot = self
         temp = pivot.parent
@@ -166,7 +165,6 @@ class Node(object):
         pivot.parent = temp.parent
 
     def pivot_left(self):
-        pass
         """Perform a left rotation on the node."""
         pivot = self
         temp = pivot.parent
@@ -188,6 +186,22 @@ class Node(object):
 
         pivot._depth = max(pivot.left.depth, pivot.right.depth) + 1
         pivot.parent = temp.parent
+
+    def pivot_rl(self):
+        pivot = self
+        pivot.value, pivot.left.value = pivot.left.value, pivot.value
+        pivot.right = pivot.left
+        pivot.left = None
+        self.pivot_left()
+
+
+    def pivot_lr(self):
+        pivot = self
+        pivot.value, pivot.right.value = pivot.right.value, pivot.value
+        pivot.left = pivot.right
+        pivot.right = None
+        self.pivot_right()
+
 
     def get_dot(self):          # pragma: no cover
         """
@@ -405,10 +419,13 @@ if __name__ == "__main__":          # pragma: no cover
 
     worst_case = BST()
     worst_list = [2, 5, 8, 14, 12, 10, 11]
-    for item in worst_list:
-        worst_case.insert(item)
+    # for item in worst_list:
+    #     worst_case.insert(item)
 
 
 
-
-    # print(bst.root.get_dot())
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    print(bst.root.get_dot())
