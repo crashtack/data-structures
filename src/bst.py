@@ -80,8 +80,9 @@ class Node(object):
             if self.balance() <= -2 and self.right.balance() < 0:
                 self.right.pivot_left()
             if self.balance() <= -2 and self.right.balance() > 0:
-
-                self.right.pivot_rl()
+                self.right.left.pivot_right()
+                self.right.pivot_left()
+                # self.right.pivot_rl()
 
         elif nn.value < self.value:
             if self.left:
@@ -93,8 +94,9 @@ class Node(object):
             if self.balance() >= 2 and self.left.balance() > 0:
                 self.left.pivot_right()
             if self.balance() >= 2 and self.left.balance() < 0:
-                
-                self.left.pivot_lr()
+                self.left.right.pivot_left()
+                self.left.pivot_right()
+                # self.left.pivot_lr()
 
     @property
     def depth(self):
@@ -145,47 +147,66 @@ class Node(object):
         """Perform a right rotation on the node."""
         pivot = self
         temp = pivot.parent
-        sib = pivot.right
+        sib = pivot._right
 
         if temp.parent and temp.parent < temp:
-            temp.parent.left = pivot
-        elif temp.parent:
             temp.parent.right = pivot
+        elif temp.parent:
+            temp.parent.left = pivot
+            pivot.parent = temp.parent
         # else:
         #     self._root = True
-        pivot.right = temp
-        temp.left = sib
+        # if pivot.parent:
+        #     pivot.parent = temp.parent
+        pivot._right = temp
+        temp.parent = pivot
+        temp._left = sib
 
-        if temp.right:
+        if temp.right and temp.left:
+            temp._depth = max(temp.right.depth, temp.left.depth) + 1
+        elif temp.right:
             temp._depth = temp.right.depth + 1
+        elif temp.left:
+            temp._depth = temp.left.depth + 1
         else:
             temp._depth = 1
 
-        pivot._depth = max(pivot.right.depth, pivot.left.depth) + 1
-        pivot.parent = temp.parent
+        if pivot.left:
+            pivot._depth = max(pivot.right.depth, pivot.left.depth) + 1
+        else:
+            pivot._depth = pivot.right.depth + 1
 
     def pivot_left(self):
         """Perform a left rotation on the node."""
         pivot = self
         temp = pivot.parent
-        sib = pivot.left
+        sib = pivot._left
 
-        if temp.parent and temp.parent < temp:
-            temp.parent.right = pivot
-        elif temp.parent:
+        if temp.parent and temp.parent > temp:
             temp.parent.left = pivot
+        elif temp.parent:
+            temp.parent.right = pivot
+            pivot.parent = temp.parent
         # else:
         #     self._root = True
-        pivot.left = temp
-        temp.right = sib
 
-        if temp.left:
+        pivot._left = temp
+        temp.parent = pivot
+        temp._right = sib
+
+        if temp.left and temp.right:
+            temp._depth = max(temp.right.depth, temp.left.depth) + 1
+        elif temp.right:
+            temp._depth = temp.right.depth + 1
+        elif temp.left:
             temp._depth = temp.left.depth + 1
         else:
             temp._depth = 1
 
-        pivot._depth = max(pivot.left.depth, pivot.right.depth) + 1
-        pivot.parent = temp.parent
+        if pivot.right:
+            pivot._depth = max(pivot.left.depth, pivot.right.depth) + 1
+        else:
+            pivot._depth = pivot.left.depth + 1
 
     def pivot_rl(self):
         pivot = self
