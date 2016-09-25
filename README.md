@@ -129,7 +129,9 @@ Worst case senario:
 
 ![Worst case Binary Search Tree](/src/worst.png)
 
-
+##Trie Tree
+* insert(): Inserts a word into the Trie tree.
+* contains(): Returns a boolean if the word is in the Trie Tree. 
 
 ##Dependencies
 * PIP
