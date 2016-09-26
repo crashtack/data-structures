@@ -153,11 +153,6 @@ class Node(object):
             temp.parent.right = self
         elif temp.parent:
             temp.parent.left = self
-            # pivot.parent = temp.parent
-        # else:
-        #     self._root = True
-        # if pivot.parent:
-        #     pivot.parent = temp.parent
         self.parent = temp.parent
         self._right = temp
         temp.parent = self
@@ -187,9 +182,6 @@ class Node(object):
             temp.parent.left = self
         elif temp.parent:
             temp.parent.right = self
-            # pivot.parent = temp.parent
-        # else:
-        #     self._root = True
         self.parent = temp.parent
         self._left = temp
         temp.parent = self
@@ -216,14 +208,12 @@ class Node(object):
         pivot.left = None
         self.pivot_left()
 
-
     def pivot_lr(self):
         pivot = self
         pivot.value, pivot.right.value = pivot.right.value, pivot.value
         pivot.left = pivot.right
         pivot.right = None
         self.pivot_right()
-
 
     def get_dot(self):          # pragma: no cover
         """

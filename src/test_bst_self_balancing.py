@@ -179,7 +179,7 @@ def test_pivot_left_balance():
     assert bst.balance() == 0
 
 
-def test_pivot_left_balance():
+def test_pivot_left_balance2():
     bst = BST()
     bst.insert(5)
     bst.insert(7)
@@ -291,7 +291,7 @@ def test_pivot_lr_right_value():
     assert bst.root.right.value is 5
 
 
-def test_pivot_lr_right_value():
+def test_pivot_lr_right_value2():
     bst = BST()
     bst.insert(5)
     bst.insert(2)
