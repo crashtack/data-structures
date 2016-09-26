@@ -12,7 +12,7 @@ class Node(object):
         node that come next.
         """
         self.value = value
-        self.next = []
+        self.next_let = []
 
     def __eq__(self, other):
         """Allow nodes to compare and check if a letter is in next list."""
@@ -26,13 +26,13 @@ class Node(object):
         try:
             letter = Node(word[0])
         except IndexError:
-            if END_OF_WORD not in self.next:
-                self.next.append(Node(END_OF_WORD))
+            if END_OF_WORD not in self.next_let:
+                self.next_let.append(Node(END_OF_WORD))
             return
-        if letter not in self.next:
-            self.next.append(letter)
-        idx = self.next.index(letter)
-        self.next[idx]._insert(word[1:])
+        if letter not in self.next_let:
+            self.next_let.append(letter)
+        idx = self.next_let.index(letter)
+        self.next_let[idx]._insert(word[1:])
 
     def _contains(self, word):
         """
@@ -42,15 +42,24 @@ class Node(object):
         try:
             letter = word[0]
         except IndexError:
-            if END_OF_WORD in self.next:
+            if END_OF_WORD in self.next_let:
                 return True
             else:
                 return False
-        if letter in self.next:
-            idx = self.next.index(letter)
-            return self.next[idx]._contains(word[1:])
+        if letter in self.next_let:
+            idx = self.next_let.index(letter)
+            return self.next_let[idx]._contains(word[1:])
         else:
             return False
+
+    def _traversal(self, word=''):
+        # import pdb; pdb.set_trace()
+        for node in self.next_let:
+            if node.value == '$':
+                yield word
+            else:
+                word += node.value
+                node._traversal(word)
 
 
 class Trie(object):
@@ -67,3 +76,7 @@ class Trie(object):
     def contains(self, word):
         """Check to see if a word starts from the first node."""
         return self.first_node._contains(word)
+
+    def traversal(self):
+        yield self.first_node._traversal()
+
