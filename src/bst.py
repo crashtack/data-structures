@@ -146,20 +146,21 @@ class Node(object):
     def pivot_right(self):
         """Perform a right rotation on the node."""
         pivot = self
-        temp = pivot.parent
-        sib = pivot._right
+        temp = self.parent
+        sib = self._right
 
         if temp.parent and temp.parent < temp:
-            temp.parent.right = pivot
+            temp.parent.right = self
         elif temp.parent:
-            temp.parent.left = pivot
-            pivot.parent = temp.parent
+            temp.parent.left = self
+            # pivot.parent = temp.parent
         # else:
         #     self._root = True
         # if pivot.parent:
         #     pivot.parent = temp.parent
-        pivot._right = temp
-        temp.parent = pivot
+        self.parent = temp.parent
+        self._right = temp
+        temp.parent = self
         temp._left = sib
 
         if temp.right and temp.left:
@@ -191,7 +192,7 @@ class Node(object):
         #     self._root = True
         self.parent = temp.parent
         self._left = temp
-        temp.parent = pivot
+        temp.parent = self
         temp._right = sib
 
         if temp.left and temp.right:

@@ -299,25 +299,25 @@ def test_pivot_lr_right_value():
     assert bst.root.parent is None
 
 
-# def test_pivot_lr_depth():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(7)
-#     bst.insert(6)
-#     assert bst.depth() == 2
-#
-#
-# def test_pivot_lr_balance():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(7)
-#     bst.insert(6)
-#     assert bst.balance() == 0
-#
-#
-# def test_pivot_lr_root_no_parent():
-#     bst = BST()
-#     bst.insert(5)
-#     bst.insert(7)
-#     bst.insert(6)
-#     assert bst.root.parent is None
+def test_pivot_lr_depth():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.depth() == 2
+
+
+def test_pivot_lr_balance():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.balance() == 0
+
+
+def test_pivot_lr_root_no_parent():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(6)
+    assert bst.root.parent is None
