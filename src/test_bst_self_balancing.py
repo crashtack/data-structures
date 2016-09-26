@@ -32,7 +32,7 @@ def test_balance_node_both_parent():
     this_node = Node(5)
     this_node.right = Node(7)
     this_node.right.right = Node(10)
-    this_node.rigth.pivot_left()
+    this_node.right.pivot_left()
     assert this_node.parent is None
 
 #
