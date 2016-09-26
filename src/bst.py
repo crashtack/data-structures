@@ -179,18 +179,18 @@ class Node(object):
     def pivot_left(self):
         """Perform a left rotation on the node."""
         pivot = self
-        temp = pivot.parent
-        sib = pivot._left
+        temp = self.parent
+        sib = self._left
 
         if temp.parent and temp.parent > temp:
-            temp.parent.left = pivot
+            temp.parent.left = self
         elif temp.parent:
-            temp.parent.right = pivot
-            pivot.parent = temp.parent
+            temp.parent.right = self
+            # pivot.parent = temp.parent
         # else:
         #     self._root = True
-
-        pivot._left = temp
+        self.parent = temp.parent
+        self._left = temp
         temp.parent = pivot
         temp._right = sib
 
@@ -204,9 +204,9 @@ class Node(object):
             temp._depth = 1
 
         if pivot.right:
-            pivot._depth = max(pivot.left.depth, pivot.right.depth) + 1
+            self._depth = max(self.left.depth, self.right.depth) + 1
         else:
-            pivot._depth = pivot.left.depth + 1
+            self._depth = self.left.depth + 1
 
     def pivot_rl(self):
         pivot = self
