@@ -137,6 +137,15 @@ Worst case senario:
 * breadth_first(self): will return a generator that will return the values in the tree using breadth-first traversal, one at a time.
 
 
+## Radix sort:
+```
+(data-structures) @banksd-XPS-15-9530:src(radix**) $ python radix_sort.py
+Best case, an ordered list
+Time: 1.379602sec to sort a 10000 element list of ordered ints from 1 to 10000
+worst case, a random list
+Time: 4.8782309999999995sec to sort a 10000 element list of random ints from 1 to 1000
+```
+
 ##Dependencies
 * PIP
 * graphviz - for dot graphs
