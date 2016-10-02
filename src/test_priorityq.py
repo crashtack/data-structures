@@ -25,11 +25,11 @@ TABLE2 = [
 ]
 
 
-def test_priorityq_none():
-    '''Tests initialization of the priorityq class with None'''
-    from priorityq import Priorityq
-    pq = Priorityq()
-    assert pq.priorityq is []
+# def test_priorityq_none():
+#     '''Tests initialization of the priorityq class with None'''
+#     from priorityq import Priorityq
+#     pq = Priorityq()
+#     assert pq.priorityq is []
 
 
 def test_priorityq_noniterable():
