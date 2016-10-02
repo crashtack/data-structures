@@ -131,6 +131,28 @@ Worst case senario:
 
 
 
+##Sort Methods
+###Insertion Sort
+Implemented 
+###Merge Sort
+Implemented
+###Quick Sort
+The Quick Sort is a portion sort strategy.  First, pick a pivot item.  
+In our implementation of the Quick Sort this is the last item of the list.  
+Then iterate through the list moving all items less then the pivot value
+to one side of the array and all items greater than the pivot value to
+the other side.  Then recursively Quick Sort the two halves of the list,
+until there is one item in the sub-lists.  
+
+The time complexity of the average case scenario would be O(nlog(n)).  
+The best case scenario is a list where the pivot number chosen, 
+happens to be the median value of the range.  This would cause equal
+dividing of the array.  The worse case scenario, would be a list that
+just contains the same value at all of its values.  In this worse case
+scenario the quick degrades into O(n^2)
+
+
+
 ##Dependencies
 * PIP
 * graphviz - for dot graphs
