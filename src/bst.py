@@ -1,6 +1,7 @@
 # -*- coding utf-8 -*-
 import random
-
+from queue_ import Queue
+from stack import Stack
 
 class Node(object):
     """Implement a Node class with value, left and right."""
@@ -27,6 +28,26 @@ class Node(object):
             else:
                 self.left = nn
             self.depth = max(self.depth, self.left.depth + 1)
+
+    def in_order(self):
+        '''recursive in order traversal'''
+        if self.left:
+            for item in self.left.in_order():
+                yield item
+        yield self.value
+        if self.right:
+            for item in self.right.in_order():
+                yield item
+
+    def post_order(self):
+        '''recursive post order traversal'''
+        if self.left:
+            for item in self.left.post_order():
+                yield item
+        if self.right:
+            for item in self.right.post_order():
+                yield item
+        yield self.value
 
     def get_dot(self):          # pragma: no cover
         """
@@ -122,6 +143,56 @@ class BST(object):
             depth_right = 0
 
         return depth_left - depth_right
+
+    def _traverse(self, add, remove, size):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        while size():
+            x = remove()
+            if x:
+                add(x.left, x.right)
+                yield x.value
+
+    def breadth_first_traversal(self):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        q = Queue()
+        q.enqueue(self.root)
+
+        def add(a, b):
+            q.enqueue(a)
+            q.enqueue(b)
+
+        return self._traverse(add, q.dequeue, q.size)
+
+    def pre_order(self):
+        '''perform a breadth first traversal, returns a list of
+           nodes in the graph
+        '''
+        s = Stack()
+        s.push(self.root)
+
+        def add(a, b):
+            s.push(b)
+            s.push(a)
+        return self._traverse(add, s.pop, s.size)
+
+    def in_order(self):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        if self.root:
+            return self.root.in_order()
+        else:
+            return []
+
+    def post_order(self):
+        '''Traverse function
+            takes in other functions and a start_node'''
+        if self.root:
+            return self.root.post_order()
+        else:
+            return []
 
 
 if __name__ == "__main__":          # pragma: no cover

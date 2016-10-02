@@ -18,10 +18,13 @@ class Priorityq(object):
 
     def insert(self, item):
         ''' inserts an item into the queue.
-        items need to be tuples with the priority as the zeroth element 
-        and the value as the next element.'''
+            items need to be tuples with the priority as the zeroth element
+            and the value as the next element.
+        '''
         if item is None:
-            raise ValueError('insert requires a tuple with the priority as the zeroth element and the value as the next element.')
+            raise ValueError('insert requires a tuple with the priority as'
+                             'the zeroth element and the value as the next'
+                             ' element.')
         elif self.priorityq is None:
             self.priorityq = [item]
         else:
