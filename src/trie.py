@@ -53,12 +53,16 @@ class Node(object):
             return False
 
     def _traversal(self, word=''):
-        # import pdb; pdb.set_trace()
-        for node in self.next_let:
-            if node.value == '$':
-                yield word
-            else:
-                word += node.value
+        if self.value == END_OF_WORD:
+            print(word)
+            #yield word
+        else:
+            try:
+                word += self.value
+            except TypeError:
+                pass
+            # import pdb; pdb.set_trace()
+            for node in self.next_let:
                 node._traversal(word)
 
 
@@ -78,5 +82,12 @@ class Trie(object):
         return self.first_node._contains(word)
 
     def traversal(self):
-        yield self.first_node._traversal()
+        for item in self.first_node._traversal():
+            yield item
+
+
+    def load(self, load_list):
+        """Takes a list of words and loads the trie trie with those words."""
+        for word in load_list:
+            self.insert(word)
 

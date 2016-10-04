@@ -99,6 +99,21 @@ def test_contains_doesnt_contain_word():
     trie.insert('attack')
     assert not trie.contains('attic')
 
+def test_trie_load():
+    from trie import Trie
+    trie = Trie()
+    new_list = ['fix', 'fax', 'fit', 'fist', 'full', 'finch', 'final', 'finial']
+    trie.load(new_list)
+    for item in new_list:
+        assert trie.contains(item)
+
+def test_trie_load_not_in_list():
+    from trie import Trie
+    trie = Trie()
+    new_list = ['fix', 'fax', 'fit', 'fist', 'full', 'finch', 'final', 'finial']
+    trie.load(new_list)
+    assert not trie.contains('fin')
+
 def test_traversal_returns_generator():
     from trie import Trie
     trie = Trie()
@@ -112,8 +127,8 @@ def test_traversal_returns_token_one_letter_word():
     token_list = []
     for token in trie.traversal():
         token_list.append(token)
-        import pdb; pdb.set_trace()
-    assert 'a' in trie.traversal()
+        # import pdb; pdb.set_trace()
+    assert 'a' in token_list
 
 def test_traversal_returns_token_two_letter_word():
     from trie import Trie
