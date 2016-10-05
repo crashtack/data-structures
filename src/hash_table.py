@@ -30,3 +30,12 @@ def rot_hash(input):
     for num in my_array:
         hash_value = (hash_value << 4) ^ (hash_value >> 28) ^ num
     return hash_value
+
+
+def sax_hash(input):
+    input = str(input).encode()
+    hash_value = 0
+    my_array = bytearray(input)
+    for num in my_array:
+        hash_value = (hash_value << 5) + (hash_value >> 2) ^ num
+    return hash_value
