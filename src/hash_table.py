@@ -7,11 +7,8 @@ def additive_hash2(input):
         hash_value += ord(char)
     return hash_value
 
-def additive_hash(input):
-    try:
-        input = input.encode()
-    except AttributeError:
-        raise AttributeError ('Input needs to be a string.')
+def add_hash(input):
+    input = str(input).encode()
     hash_value = 0
     my_array = bytearray(input)
     for num in my_array:
@@ -19,12 +16,17 @@ def additive_hash(input):
     return hash_value
 
 def xor_hash(input):
-    try:
-        input = input.encode()
-    except AttributeError:
-        raise AttributeError ('Input needs to be a string.')
+    input = str(input).encode()
     hash_value = 0
     my_array = bytearray(input)
     for num in my_array:
         hash_value = num ^ hash_value
+    return hash_value
+
+def rot_hash(input):
+    input = str(input).encode()
+    hash_value = 0
+    my_array = bytearray(input)
+    for num in my_array:
+        hash_value = (hash_value << 4) ^ (hash_value >> 28) ^ num
     return hash_value
