@@ -1,7 +1,7 @@
 # -*- coding utf-8 -*-
 
 import pytest
-from hash_table import add_hash, xor_hash, rot_hash, sax_hash
+from hash_table import add_hash, xor_hash, rot_hash, sax_hash, HashTable
 
 TYPE_OF_HASH = [add_hash, xor_hash, rot_hash, sax_hash]
 
@@ -41,11 +41,36 @@ def test_xor_two_numbers2():
     """test to see if xor_hash will hash a string len2"""
     assert xor_hash('op') == 31
 
-def test_rot_two_numbers():
-    """test to see if rot_hash will hash a string len2"""
-    assert rot_hash('ab') == 1650
 
-def test_sax_two_numbers():
-    """test to see if sax_hash will hash a string len2"""
-    assert rot_hash('op') == 1664
+def test_initialize_table():
+    """test to see if hash table initializes with a size"""
+    ht = HashTable(1024)
+    assert ht.size == 1024
+
+def test_initialize_hash():
+    """test to see if hash table initializes with default hash."""
+    ht = HashTable(1024)
+    assert ht._hash == sax_hash
+
+def test_initialize_hash_specified():
+    """test to see if hash table initializes with specified hash."""
+    ht = HashTable(1024, rot_hash)
+    assert ht._hash == rot_hash
+
+def test_initialize_hash_specified_not_in_list():
+    """test to see if hash table initializes with specified hash."""
+    with pytest.raises(ValueError):
+        ht = HashTable(1024, 'the_hash')
+
+
+def test_check_hash_function():
+    ht = HashTable(1024)
+    assert ht._hash('key') == sax_hash('key')
+
+
+def test_check_hash_function_specified():
+    ht = HashTable(1024, add_hash)
+    assert ht._hash('key') == add_hash('key')
+
+
 
