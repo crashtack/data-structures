@@ -3,7 +3,9 @@
 
 WORD_LIST = '/usr/share/dict/words'
 
+
 def add_hash(input):
+    """additive hash"""
     input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
@@ -11,7 +13,9 @@ def add_hash(input):
         hash_value += num
     return hash_value
 
+
 def xor_hash(input):
+    """binary xor hash"""
     input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
@@ -19,7 +23,9 @@ def xor_hash(input):
         hash_value = num ^ hash_value
     return hash_value
 
+
 def rot_hash(input):
+    """rotating hash"""
     input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
@@ -29,6 +35,7 @@ def rot_hash(input):
 
 
 def sax_hash(input):
+    """saxiphone hash"""
     input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
@@ -39,6 +46,7 @@ def sax_hash(input):
 
 class HashTable(object):
     def __init__(self, size, hash_type='sax_hash'):
+        """initialize the hash table"""
         self.size = size
         self._implemented_hashes = {
             'add_hash': add_hash,
@@ -55,9 +63,11 @@ class HashTable(object):
             self.bucket.append([])
 
     def _hash(self, key):
+        """hash the value of the key with the given hash"""
         return self._hash_type(key)
 
     def set(self, key, value):
+        """add something to the white table"""
         try:
             hashed_key = self._hash(key) % self.size
         except AttributeError:
@@ -66,6 +76,7 @@ class HashTable(object):
             self.bucket[hashed_key].append((key, value))
 
     def get(self, key):
+        """get an item from the table"""
         hashed_key = self._hash(key) % self.size
         for item in self.bucket[hashed_key]:
             if item[0] == key:
@@ -79,6 +90,7 @@ class ExampleHashTable(HashTable):
         self.load_dictionary()
 
     def load_dictionary(self):
+        """load the dictionary from the os"""
         word_list_file = open(WORD_LIST, 'r')
 
         for line in word_list_file:
@@ -86,4 +98,3 @@ class ExampleHashTable(HashTable):
             self.set(word, word)
 
         word_list_file.close()
-

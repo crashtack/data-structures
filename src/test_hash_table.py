@@ -73,16 +73,19 @@ def test_initialize_hash_buckets_empty():
 
 
 def test_check_hash_function():
+    """check the sax hash function"""
     ht = HashTable(10)
     assert ht._hash('key') == sax_hash('key')
 
 
 def test_check_hash_function_specified():
+    """check the use of the add_hash function"""
     ht = HashTable(10, 'add_hash')
     assert ht._hash('key') == add_hash('key')
 
 
 def test_set_one_item():
+    """test one item in a hash table"""
     table_size = 100
     ht = HashTable(table_size)
     ht.set('elvis', 'singer')
@@ -91,6 +94,7 @@ def test_set_one_item():
 
 
 def test_set_one_item_all_other_buckets_still_empty():
+    """tests that for 1 item i a hash, the rest are empty"""
     table_size = 100
     ht = HashTable(table_size)
     ht.set('elvis', 'singer')
@@ -102,6 +106,7 @@ def test_set_one_item_all_other_buckets_still_empty():
 
 
 def test_set_two_items_collision():
+    """test collision handling"""
     table_size = 100
     ht = HashTable(table_size, 'add_hash')
     ht.set('elvis', 'singer')
@@ -109,13 +114,16 @@ def test_set_two_items_collision():
     key = add_hash('elvis') % table_size
     assert len(ht.bucket[key]) == 2
 
+
 def test_set_int():
     """test to see if hash table will raise an error without a string."""
     ht = HashTable(10)
     with pytest.raises(KeyError):
         ht.set(1, 'value')
 
+
 def test_get_one_item():
+    """test retreaval of one item"""
     table_size = 100
     ht = HashTable(table_size)
     ht.set('elvis', 'singer')
@@ -123,6 +131,7 @@ def test_get_one_item():
 
 
 def test_get_two_items_collision():
+    """get i collided item out"""
     table_size = 100
     ht = HashTable(table_size, 'add_hash')
     ht.set('elvis', 'singer')
@@ -132,6 +141,7 @@ def test_get_two_items_collision():
 
 
 def test_get_item_not_in_table():
+    """test a error is raised for item not in the table"""
     table_size = 100
     ht = HashTable(table_size)
     ht.set('elvis', 'singer')
@@ -139,11 +149,10 @@ def test_get_item_not_in_table():
         ht.get('lives')
 
 
-# @pytest.mark.parametrize('hash_type', STRING_HASH)
-# def test_hash_full_table_retrieves_val(hash_type):
-#     """test to see if loaded hash table will return correct value."""
-#     from hash_table import ExampleHashTable
-#     ht = ExampleHashTable(hash_type)
-#     assert ht.get('aardvark') == 'aardvark'
-#     assert ht.get('Zyzzogeton') == 'Zyzzogeton'
-
+@pytest.mark.parametrize('hash_type', STRING_HASH)
+def test_hash_full_table_retrieves_val(hash_type):
+    """test to see if loaded hash table will return correct value."""
+    from hash_table import ExampleHashTable
+    ht = ExampleHashTable(hash_type)
+    assert ht.get('aardvark') == 'aardvark'
+    assert ht.get('table') == 'table'
