@@ -55,7 +55,7 @@ class Node(object):
     def _traversal(self, word=''):
         if self.value == END_OF_WORD:
             print(word)
-            #yield word
+            yield word
         else:
             try:
                 word += self.value
@@ -85,9 +85,7 @@ class Trie(object):
         for item in self.first_node._traversal():
             yield item
 
-
     def load(self, load_list):
         """Takes a list of words and loads the trie trie with those words."""
         for word in load_list:
             self.insert(word)
-
