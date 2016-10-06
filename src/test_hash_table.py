@@ -4,6 +4,7 @@ import pytest
 from hash_table import add_hash, xor_hash, rot_hash, sax_hash, HashTable
 
 TYPE_OF_HASH = [add_hash, xor_hash, rot_hash, sax_hash]
+STRING_HASH = ['add_hash', 'xor_hash', 'rot_hash', 'sax_hash']
 
 # def test_add_include():
 #     """test to see if hash can be included"""
@@ -24,8 +25,9 @@ def test_hash_one_letter(hash_type):
 
 @pytest.mark.parametrize('hash_type', TYPE_OF_HASH)
 def test_hash_int(hash_type):
-    """test to see if hash will hash a number"""
-    assert hash_type(1) == 49
+    """test to see if hash will have an attribute error with an int"""
+    with pytest.raises(AttributeError):
+        hash_type(1)
 
 
 def test_add_two_numbers():
@@ -107,6 +109,11 @@ def test_set_two_items_collision():
     key = add_hash('elvis') % table_size
     assert len(ht.bucket[key]) == 2
 
+def test_set_int():
+    """test to see if hash table will raise an error without a string."""
+    ht = HashTable(10)
+    with pytest.raises(KeyError):
+        ht.set(1, 'value')
 
 def test_get_one_item():
     table_size = 100
@@ -130,4 +137,13 @@ def test_get_item_not_in_table():
     ht.set('elvis', 'singer')
     with pytest.raises(KeyError):
         ht.get('lives')
+
+
+# @pytest.mark.parametrize('hash_type', STRING_HASH)
+# def test_hash_full_table_retrieves_val(hash_type):
+#     """test to see if loaded hash table will return correct value."""
+#     from hash_table import ExampleHashTable
+#     ht = ExampleHashTable(hash_type)
+#     assert ht.get('aardvark') == 'aardvark'
+#     assert ht.get('Zyzzogeton') == 'Zyzzogeton'
 

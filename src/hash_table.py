@@ -4,7 +4,7 @@
 WORD_LIST = '/usr/share/dict/words'
 
 def add_hash(input):
-    input = str(input).encode()
+    input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
     for num in my_array:
@@ -12,7 +12,7 @@ def add_hash(input):
     return hash_value
 
 def xor_hash(input):
-    input = str(input).encode()
+    input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
     for num in my_array:
@@ -20,7 +20,7 @@ def xor_hash(input):
     return hash_value
 
 def rot_hash(input):
-    input = str(input).encode()
+    input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
     for num in my_array:
@@ -29,7 +29,7 @@ def rot_hash(input):
 
 
 def sax_hash(input):
-    input = str(input).encode()
+    input = input.encode()
     hash_value = 0
     my_array = bytearray(input)
     for num in my_array:
@@ -58,7 +58,10 @@ class HashTable(object):
         return self._hash_type(key)
 
     def set(self, key, value):
-        hashed_key = self._hash(key) % self.size
+        try:
+            hashed_key = self._hash(key) % self.size
+        except AttributeError:
+            raise KeyError('Key value must be a string')
         if value not in self.bucket[hashed_key]:
             self.bucket[hashed_key].append((key, value))
 
