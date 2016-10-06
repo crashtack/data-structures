@@ -1,6 +1,8 @@
 # -*- coding utf-8 -*-
 """Implementation of a quick sort."""
 
+WORD_LIST = '/usr/share/dict/words'
+
 def add_hash(input):
     input = str(input).encode()
     hash_value = 0
@@ -66,4 +68,19 @@ class HashTable(object):
             if item[0] == key:
                 return item[1]
         raise KeyError(key)
+
+
+class ExampleHashTable(HashTable):
+    def __init__(self, hash_type='sax_hash'):
+        HashTable.__init__(self, 1000000, hash_type)
+        self.load_dictionary()
+
+    def load_dictionary(self):
+        word_list_file = open(WORD_LIST, 'r')
+
+        for line in word_list_file:
+            word = line.rstrip('\n')
+            self.set(word, word)
+
+        word_list_file.close()
 
