@@ -80,21 +80,54 @@ def test_check_hash_function_specified():
     assert ht._hash('key') == add_hash('key')
 
 
-def test_insert_one_item():
+def test_set_one_item():
     table_size = 100
     ht = HashTable(table_size)
-    ht.set('elvis', 'yummy')
+    ht.set('elvis', 'singer')
     key = sax_hash('elvis') % table_size
-    assert ht.bucket[key] == [('elvis', 'yummy')]
+    assert ht.bucket[key] == [('elvis', 'singer')]
 
 
-def test_insert_one_item_all_other_buckets_still_empty():
+def test_set_one_item_all_other_buckets_still_empty():
     table_size = 100
     ht = HashTable(table_size)
-    ht.set('elvis', 'yummy')
+    ht.set('elvis', 'singer')
     key = sax_hash('elvis') % table_size
-    ht.bucket[key] == [('elvis', 'yummy')]
+    ht.bucket[key] == [('elvis', 'singer')]
     for i in range(table_size):
         if i != key:
             assert len(ht.bucket[i]) == 0
+
+
+def test_set_two_items_collision():
+    table_size = 100
+    ht = HashTable(table_size, 'add_hash')
+    ht.set('elvis', 'singer')
+    ht.set('lives', 'yup')
+    key = add_hash('elvis') % table_size
+    assert len(ht.bucket[key]) == 2
+
+
+def test_get_one_item():
+    table_size = 100
+    ht = HashTable(table_size)
+    ht.set('elvis', 'singer')
+    assert ht.get('elvis') == 'singer'
+
+
+def test_get_two_items_collision():
+    table_size = 100
+    ht = HashTable(table_size, 'add_hash')
+    ht.set('elvis', 'singer')
+    ht.set('lives', 'yup')
+    assert ht.get('elvis') == 'singer'
+    assert ht.get('lives') == 'yup'
+
+
+def test_get_item_not_in_table():
+    table_size = 100
+    ht = HashTable(table_size)
+    ht.set('elvis', 'singer')
+    with pytest.raises(KeyError):
+        ht.get('lives')
 

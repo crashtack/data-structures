@@ -60,3 +60,10 @@ class HashTable(object):
         if value not in self.bucket[hashed_key]:
             self.bucket[hashed_key].append((key, value))
 
+    def get(self, key):
+        hashed_key = self._hash(key) % self.size
+        for item in self.bucket[hashed_key]:
+            if item[0] == key:
+                return item[1]
+        raise KeyError(key)
+
