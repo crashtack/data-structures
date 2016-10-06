@@ -36,21 +36,27 @@ def sax_hash(input):
 
 
 class HashTable(object):
-    def __init__(self, size, hash=sax_hash):
+    def __init__(self, size, hash_type='sax_hash'):
         self.size = size
-        self._implemented_hashes = [add_hash, xor_hash, rot_hash, sax_hash]
-        if hash in self._implemented_hashes:
-            self._hash = hash
+        self._implemented_hashes = {
+            'add_hash': add_hash,
+            'xor_hash': xor_hash,
+            'rot_hash': rot_hash,
+            'sax_hash': sax_hash
+        }
+        if hash_type in self._implemented_hashes:
+            self._hash_type = self._implemented_hashes[hash_type]
         else:
             raise ValueError('Not a correct type of hash.')
+        self.bucket = []
+        for i in range(self.size):
+            self.bucket.append([])
 
     def _hash(self, key):
-        return self.hash(key)
+        return self._hash_type(key)
 
     def set(self, key, value):
-        key = self._hash(key) % self.size
-
-
-
-
+        hashed_key = self._hash(key) % self.size
+        if value not in self.bucket[hashed_key]:
+            self.bucket[hashed_key].append((key, value))
 

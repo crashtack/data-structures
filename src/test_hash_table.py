@@ -44,33 +44,57 @@ def test_xor_two_numbers2():
 
 def test_initialize_table():
     """test to see if hash table initializes with a size"""
-    ht = HashTable(1024)
-    assert ht.size == 1024
+    ht = HashTable(10)
+    assert ht.size == 10
 
 def test_initialize_hash():
     """test to see if hash table initializes with default hash."""
-    ht = HashTable(1024)
-    assert ht._hash == sax_hash
+    ht = HashTable(10)
+    assert ht._hash_type == sax_hash
 
 def test_initialize_hash_specified():
     """test to see if hash table initializes with specified hash."""
-    ht = HashTable(1024, rot_hash)
-    assert ht._hash == rot_hash
+    ht = HashTable(10, 'rot_hash')
+    assert ht._hash_type == rot_hash
 
 def test_initialize_hash_specified_not_in_list():
     """test to see if hash table initializes with specified hash."""
     with pytest.raises(ValueError):
-        ht = HashTable(1024, 'the_hash')
+        ht = HashTable(10, 'the_hash')
+
+
+def test_initialize_hash_buckets_empty():
+    """test to see if hash table initializes with specified hash."""
+    ht = HashTable(10)
+    for i in range(10):
+        assert ht.bucket[i] == []
 
 
 def test_check_hash_function():
-    ht = HashTable(1024)
+    ht = HashTable(10)
     assert ht._hash('key') == sax_hash('key')
 
 
 def test_check_hash_function_specified():
-    ht = HashTable(1024, add_hash)
+    ht = HashTable(10, 'add_hash')
     assert ht._hash('key') == add_hash('key')
 
 
+def test_insert_one_item():
+    table_size = 100
+    ht = HashTable(table_size)
+    ht.set('elvis', 'yummy')
+    key = sax_hash('elvis') % table_size
+    assert ht.bucket[key] == [('elvis', 'yummy')]
+
+
+def test_insert_one_item_all_other_buckets_still_empty():
+    table_size = 100
+    ht = HashTable(table_size)
+    ht.set('elvis', 'yummy')
+    key = sax_hash('elvis') % table_size
+    ht.bucket[key] == [('elvis', 'yummy')]
+    for i in range(table_size):
+        if i != key:
+            assert len(ht.bucket[i]) == 0
 
