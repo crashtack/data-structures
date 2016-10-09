@@ -54,7 +54,7 @@ class Node(object):
 
     def _traversal(self, word='', start=''):
         """
-        Will generate a list of words strings below the current node.
+        Generate a list of words strings below the current node.
         strings will start with the start sting
         """
         if start:

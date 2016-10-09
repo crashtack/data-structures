@@ -25,11 +25,11 @@ TABLE2 = [
 ]
 
 
-def test_priorityq_none():
-    '''Tests initialization of the priorityq class with None'''
-    from priorityq import Priorityq
-    pq = Priorityq()
-    assert pq.priorityq is []
+# def test_priorityq_none():
+#     '''Tests initialization of the priorityq class with None'''
+#     from priorityq import Priorityq
+#     pq = Priorityq()
+#     assert pq.priorityq is []
 
 
 def test_priorityq_noniterable():
@@ -111,18 +111,9 @@ def test_peek(input_d, result, result2):
     pq = Priorityq(input_d)
     assert pq.peek() == result[0]
 
+
 def test_peek_none():
     from priorityq import Priorityq
     pq = Priorityq()
     with pytest.raises(IndexError):
         pq.peek()
-
-
-
-
-
-
-
-
-
-

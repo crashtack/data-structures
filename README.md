@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/crashtack/data-structures.svg?branch=bst_travers)](https://travis-ci.org/crashtack/data-structures)
 # data-structures
 
 ## Implement a singly-linked list in Python:
@@ -99,10 +100,10 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 
 
 ## Shortest path
-* not dijkstra's algorithem is not currently working
+* dijkstra's algorithem is not currently working
 
 
-## Binary Search Tree (BST)
+# Binary Search Tree (BST)
 * size: Return the number of nodes in the BST
 * insert(val): Insert a node with the value of val into the BST
 * contains(val): Return True if there exists a node with the value of val in the BST.  Return False if the value is not pressent.
@@ -110,10 +111,10 @@ Breadth First Traversal: [1, 3, 7, 6, 2, 5, 4] Run time: 0:00:03.371413
 * balance(): Returns the difference in the depth of the left side of the graph and the right side of the graph. If the right side of the graph is deeper, this will return a negative number.
 
 * Nodes also have a get_dot method that will output DOT language.
-* This DOT notation can be printed, then in the command line redirected to a file. 
+* This DOT notation can be printed, then in the command line redirected to a file.
 * From the command line run: dot -Tpng InputFile.dot -o OutputFile.png to create a visual graph.
 
-For testing of the BST we created verious trees with random numbers.  One tree had 20 nodes with 
+For testing of the BST we created verious trees with random numbers.  One tree had 20 nodes with
 values from -100 to 100.  The list that was created was:
 [-14, -43, 48, -10, -98, 94, -71, 35, 75, 73, -64, -35, -14, -87, -81, 90, -41, -68, -28]
 which looks like:
@@ -129,9 +130,48 @@ Worst case senario:
 
 ![Worst case Binary Search Tree](/src/worst.png)
 
+## Binary Search Tree Graph Traversals
+* in_order(self): will return a generator that will return the values in the tree using in-order traversal, one at a time.
+* pre_order(self): will return a generator that will return the values in the tree using pre-order traversal, one at a time.
+* post_order(self): will return a generator that will return the values in the tree using post_order traversal, one at a time.
+* breadth_first(self): will return a generator that will return the values in the tree using breadth-first traversal, one at a time.
+
 ##Trie Tree
 * insert(): Inserts a word into the Trie tree.
 * contains(): Returns a boolean if the word is in the Trie Tree. 
+* traversal([start]): Iterates through all of the words in the Trie.
+    optional [start] - Will limit the returned values to words that starts with
+      the passed in phrase.
+* load(list): Will load in a list of words to the Trie. 
+
+## Radix sort:
+```
+(data-structures) @banksd-XPS-15-9530:src(radix**) $ python radix_sort.py
+Best case, an ordered list
+Time: 1.379602sec to sort a 10000 element list of ordered ints from 1 to 10000
+worst case, a random list
+Time: 4.8782309999999995sec to sort a 10000 element list of random ints from 1 to 1000
+```
+
+##Sort Methods
+###Insertion Sort
+Implemented
+###Merge Sort
+Implemented
+###Quick Sort
+The Quick Sort is a portion sort strategy.  First, pick a pivot item.  
+In our implementation of the Quick Sort this is the last item of the list.  
+Then iterate through the list moving all items less then the pivot value
+to one side of the array and all items greater than the pivot value to
+the other side.  Then recursively Quick Sort the two halves of the list,
+until there is one item in the sub-lists.  
+
+The time complexity of the average case scenario would be O(nlog(n)).  
+The best case scenario is a list where the pivot number chosen,
+happens to be the median value of the range.  This would cause equal
+dividing of the array.  The worse case scenario, would be a list that
+just contains the same value at all of its values.  In this worse case
+scenario the quick degrades into O(n^2)
 
 ##Dependencies
 * PIP
