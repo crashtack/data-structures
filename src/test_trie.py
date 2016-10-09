@@ -1,14 +1,17 @@
 # -*- coding utf-8 -*-
 import types
 
+
 def test_include():
     """Test that Trie can be included."""
     from trie import Trie
+
 
 def test_trie_init():
     from trie import Trie
     trie = Trie()
     assert trie.first_node.value is None
+
 
 def test_trie_insert_one_letter_word():
     from trie import Trie
@@ -127,7 +130,6 @@ def test_traversal_returns_token_one_letter_word():
     token_list = []
     for token in trie.traversal():
         token_list.append(token)
-        # import pdb; pdb.set_trace()
     assert 'a' in token_list
 
 def test_traversal_returns_token_two_letter_word():

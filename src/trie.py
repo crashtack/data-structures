@@ -103,9 +103,7 @@ class Trie(object):
         for item in self.first_node._traversal(start=start):
             yield item
 
-
     def load(self, load_list):
         """Takes a list of words and loads the trie trie with those words."""
         for word in load_list:
             self.insert(word)
-
