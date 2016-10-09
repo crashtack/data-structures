@@ -52,18 +52,35 @@ class Node(object):
         else:
             return False
 
-    def _traversal(self, word=''):
-        if self.value == END_OF_WORD:
-            print(word)
-            #yield word
+    def _traversal(self, word='', start=''):
+        """
+        Will generate a list of words strings below the current node.
+        strings will start with the start sting
+        """
+        if start:
+            next_letter = start[0]
+            if next_letter in self.next_let:
+                start = start[1:]
+                try:
+                    word += self.value
+                except TypeError:
+                    pass
+                idx = self.next_let.index(next_letter)
+                for item in self.next_let[idx]._traversal(word, start):
+                    yield item
+            else:
+                StopIteration
         else:
-            try:
-                word += self.value
-            except TypeError:
-                pass
-            # import pdb; pdb.set_trace()
-            for node in self.next_let:
-                node._traversal(word)
+            if self.value == END_OF_WORD:
+                yield word
+            else:
+                try:
+                    word += self.value
+                except TypeError:
+                    pass
+                for node in self.next_let:
+                    for item in node._traversal(word):
+                        yield item
 
 
 class Trie(object):
@@ -81,8 +98,9 @@ class Trie(object):
         """Check to see if a word starts from the first node."""
         return self.first_node._contains(word)
 
-    def traversal(self):
-        for item in self.first_node._traversal():
+    def traversal(self, start=None):
+        """Will return all words in a tree with a given start string."""
+        for item in self.first_node._traversal(start=start):
             yield item
 
 

@@ -139,3 +139,65 @@ def test_traversal_returns_token_two_letter_word():
         token_list.append(token)
     assert 'at' in token_list
 
+
+def test_traversal_generator_whole_list():
+    """Test to see if traversal returns only items in the start list."""
+    from trie import Trie
+    trie = Trie()
+    a_list = ['fix', 'fax', 'fit', 'fist', 'full', 'finch', 'final', 'finial']
+    trie.load(a_list)
+    count = 0
+    for item in trie.traversal():
+        assert item in a_list
+        count += 1
+    assert count == len(a_list)
+
+
+def test_traversal_generator_with_start():
+    """Test to see if traversal returns only items in the start list."""
+    from trie import Trie
+    trie = Trie()
+    a_list = ['fix']
+    trie.load(a_list)
+    count = 0
+    for item in trie.traversal(start='f'):
+        assert item in a_list
+        count += 1
+    assert count == 1
+
+
+def test_traversal_generator_with_start_partial_match():
+    """Test to see if traversal returns only items in the start list."""
+    from trie import Trie
+    trie = Trie()
+    a_list = ['fix', 'six']
+    trie.load(a_list)
+    count = 0
+    for item in trie.traversal(start='f'):
+        assert item in a_list
+        count += 1
+    assert count == 1
+
+
+def test_traversal_generator_with_start_no_match():
+    """Test to see if traversal returns only items in the start list."""
+    from trie import Trie
+    trie = Trie()
+    a_list = ['fix', 'six']
+    trie.load(a_list)
+    count = 0
+    for item in trie.traversal(start='m'):
+        count += 1
+    assert count == 0
+
+
+def test_traversal_generator_with_start_full_list():
+    """Test to see if traversal returns only items in the start list."""
+    from trie import Trie
+    trie = Trie()
+    a_list = ['fix', 'fax', 'fit', 'fist', 'full', 'finch', 'final', 'finial']
+    trie.load(a_list)
+    count = 0
+    for item in trie.traversal(start='fi'):
+        count += 1
+    assert count == 6
