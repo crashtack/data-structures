@@ -136,6 +136,13 @@ Worst case senario:
 * post_order(self): will return a generator that will return the values in the tree using post_order traversal, one at a time.
 * breadth_first(self): will return a generator that will return the values in the tree using breadth-first traversal, one at a time.
 
+##Trie Tree
+* insert(): Inserts a word into the Trie tree.
+* contains(): Returns a boolean if the word is in the Trie Tree. 
+* traversal([start]): Iterates through all of the words in the Trie.
+    optional [start] - Will limit the returned values to words that starts with
+      the passed in phrase.
+* load(list): Will load in a list of words to the Trie. 
 
 ## Radix sort:
 ```
@@ -165,7 +172,6 @@ happens to be the median value of the range.  This would cause equal
 dividing of the array.  The worse case scenario, would be a list that
 just contains the same value at all of its values.  In this worse case
 scenario the quick degrades into O(n^2)
-
 
 ##Dependencies
 * PIP
