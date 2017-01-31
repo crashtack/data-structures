@@ -3,8 +3,10 @@ from queue_ import Queue
 
 
 def radix(l1):
+
     ''' radix sort: start with the least significant bit
         Implemented using dictionaries of Queues '''
+
     try:
         digit = len(str(max(l1)))
     except ValueError:
@@ -18,7 +20,7 @@ def radix(l1):
 
         # load the up dict_
         for item in range(len(l1)):
-            if digit == 1:
+            if i == 1:
                 num = (floor(l1[item] / i) % 10)
             else:
                 num = (floor(l1[item] / 10 ** (i - 1)) % 10)
@@ -27,8 +29,7 @@ def radix(l1):
         # empty the dict_ back into the list
         l1 = []
         i = 10
-        while i:
-            i -= 1
+        for i in range(10):
             while dict_[i].size():
                 l1.append(dict_[i].dequeue())
     return l1
