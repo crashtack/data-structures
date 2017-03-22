@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/crashtack/data-structures.svg?branch=bst_travers)](https://travis-ci.org/crashtack/data-structures)
+[![Build Status](https://travis-ci.org/crashtack/data-structures.svg?branch=bst_delete)](https://travis-ci.org/crashtack/data-structures)
+
+
 # data-structures
 
 ## Implement a singly-linked list in Python:
@@ -136,6 +138,11 @@ Worst case senario:
 * post_order(self): will return a generator that will return the values in the tree using post_order traversal, one at a time.
 * breadth_first(self): will return a generator that will return the values in the tree using breadth-first traversal, one at a time.
 
+## Binary Search Tree Graph Delete Node
+* delete(self, val): remove val from the tree if present, if not present this method is a no-op. Return None in all cases.
+### Appreciation
+*https://www.youtube.com/watch?v=3TOl3Fv4394
+
 ##Trie Tree
 * insert(): Inserts a word into the Trie tree.
 * contains(): Returns a boolean if the word is in the Trie Tree. 
@@ -174,6 +181,6 @@ just contains the same value at all of its values.  In this worse case
 scenario the quick degrades into O(n^2)
 
 ##Dependencies
-* PIP
-* graphviz - for dot graphs
-* Appreciation to https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
+* see requirements.txt
+
+ https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
