@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/crashtack/data-structures.svg?branch=bst_delete)](https://travis-ci.org/crashtack/data-structures)
 
+
 # data-structures
 
 ## Implement a singly-linked list in Python:
@@ -141,6 +142,43 @@ Worst case senario:
 * delete(self, val): remove val from the tree if present, if not present this method is a no-op. Return None in all cases.
 ### Appreciation
 *https://www.youtube.com/watch?v=3TOl3Fv4394
+
+##Trie Tree
+* insert(): Inserts a word into the Trie tree.
+* contains(): Returns a boolean if the word is in the Trie Tree. 
+* traversal([start]): Iterates through all of the words in the Trie.
+    optional [start] - Will limit the returned values to words that starts with
+      the passed in phrase.
+* load(list): Will load in a list of words to the Trie. 
+
+## Radix sort:
+```
+(data-structures) @banksd-XPS-15-9530:src(radix**) $ python radix_sort.py
+Best case, an ordered list
+Time: 1.379602sec to sort a 10000 element list of ordered ints from 1 to 10000
+worst case, a random list
+Time: 4.8782309999999995sec to sort a 10000 element list of random ints from 1 to 1000
+```
+
+##Sort Methods
+###Insertion Sort
+Implemented
+###Merge Sort
+Implemented
+###Quick Sort
+The Quick Sort is a portion sort strategy.  First, pick a pivot item.  
+In our implementation of the Quick Sort this is the last item of the list.  
+Then iterate through the list moving all items less then the pivot value
+to one side of the array and all items greater than the pivot value to
+the other side.  Then recursively Quick Sort the two halves of the list,
+until there is one item in the sub-lists.  
+
+The time complexity of the average case scenario would be O(nlog(n)).  
+The best case scenario is a list where the pivot number chosen,
+happens to be the median value of the range.  This would cause equal
+dividing of the array.  The worse case scenario, would be a list that
+just contains the same value at all of its values.  In this worse case
+scenario the quick degrades into O(n^2)
 
 ##Dependencies
 * see requirements.txt
