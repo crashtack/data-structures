@@ -180,6 +180,22 @@ dividing of the array.  The worse case scenario, would be a list that
 just contains the same value at all of its values.  In this worse case
 scenario the quick degrades into O(n^2)
 
+##Hash Table
+To implement the hash table call:
+  Hash_Table(size[, hash])
+
+size - the size of the hash table.  This is set at the time of implementation
+and is not dynamic.
+hash - type of hash function to use.  Implemented hashes:
+  * 'add_hash' - adds value of bits together.
+  * 'xor_hash' - exclusive or of the bits.
+  * 'rot_hash' (Rotating) - Shifts bits and exclusive or.
+  * 'sax_hash' (Shift, add, xor) _ Shifts bits, adds and exclusive or.
+
+Methods:
+  * set(key, value) - Sets a key, value pair in the hash table.
+  * get(key) - Returns a value given a keys
+
 ##Dependencies
 * see requirements.txt
 

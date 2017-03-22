@@ -3,7 +3,10 @@ from queue_ import Queue
 
 
 def radix(l1):
-    """radix sort: start with the least significant bit"""
+
+    ''' radix sort: start with the least significant bit
+        Implemented using dictionaries of Queues '''
+
     try:
         digit = len(str(max(l1)))
     except ValueError:
